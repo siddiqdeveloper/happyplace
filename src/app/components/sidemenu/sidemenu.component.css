@@ -1,0 +1,13 @@
+.active {
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.2);
+    border-left-color: #ffffff;
+}
+
+.routerLinkActive {
+    color: red;
+}
+
+.hide {
+    display: none;
+}

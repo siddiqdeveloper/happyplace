@@ -1,0 +1,184 @@
+<app-header> </app-header>
+<app-sidemenu></app-sidemenu>
+<div class="app sidebar-mini">
+    <div class="page">
+        <div class="page-main">
+            <div class="app-content">
+                <div class="side-app">
+                    <div class="page-header">
+                        <h4 class="page-title">Blog Comments</h4>
+                    </div>
+                    <div class="card">
+                        <div class="card-header-1">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card-title">
+                                        <form class="search-bar search-server">
+                                            <div class=" has-search">
+                                                <span class="fa fa-search form-control-feedback"></span>
+                                                <input [formControl]="searchField" type="text" class="form-control" placeholder="Search User Name">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="card p-4" [class.h-250]="loading" *ngIf="blogCommentList.length == 0">
+                                <ngx-loading [show]="loading"></ngx-loading>
+                                <div class="card-header-1">
+                                    <h4 class="text-center">Blog Comments Not Available</h4>
+                                </div>
+                            </div>
+                            <div class="card" *ngIf="blogCommentList.length != 0">
+                                <div class="card-header">
+                                    <div class="card-title">List of Comments - ( {{blogCommentList.length}} )</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered text-nowrap w-100 text-center align-middle">
+                                            <thead>
+                                                <tr>
+                                                    <th class="wd-15p">S.No</th>
+                                                    <th class="wd-15p">Blog Name</th>
+                                                    <th class="wd-15p">Comment User Name</th>
+                                                    <th class="wd-15p">View Comments</th>
+                                                    <th class="wd-15p">Status</th>
+                                                    <!-- <th class="wd-15p">Edit Image</th> -->
+                                                    <th class="wd-10p">Accept</th>
+                                                    <th class="wd-25p">Reject</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let banner of blogCommentList| paginate: { itemsPerPage: 10, currentPage: sno };let i = index">
+                                                    <td>{{(i+1) + ((sno-1) * 10)}}</td>
+                                                    <td>{{banner.blogdetails[0].blog_heading }}</td>
+                                                    <td>{{banner.name }}</td>
+                                                    <td><button class="btn btn-server btn-success" (click)="openModalBox(banner.id)"><i class="fa fa-pencil-square-o fa-1x mobile-icon" ></i><span class="window-text">View</span> </button>
+                                                    </td>                                                    
+                                                    <td>
+                                                        <span class=" text-success status_icon m-1 " *ngIf="banner.active_status == 1"><i class="fa fa-smile-o mr-2 mobile-icon" aria-hidden="true"></i><span class="window-text"> Active</span></span>
+                                                        <span class=" text-danger status_icon m-1 " *ngIf="banner.active_status == 0"><i class="fa fa-frown-o mr-2 mobile-icon" aria-hidden="true"></i><span class="window-text"> In-Active</span></span>
+                                                    </td>
+                                                   
+                                                    <!-- <td>
+                                                        <button class="btn btn-server btn-success" [routerLink]="['/bottom-banner-image', banner.id]"><i
+                                                            class="fa fa-pencil-square-o fa-1x mobile-icon"></i><span
+                                                            class="window-text">Image </span></button>
+                                                    </td> --> 
+                                                    <td>
+                                                        <button type="button"  *ngIf="banner.active_status == 0" class="btn btn-success btn-banner btn-radius waves-effect waves-light m-1" (click)="bannerSwitch(banner.id)"><i class="fa fa-check-circle mobile-icon"></i><span class="window-text">Accept</span></button>
+                                                        <button type="button" disabled *ngIf="banner.active_status == 1" class="btn btn-danger btn-banner btn-radius waves-effect waves-light m-1" (click)="bannerSwitch(banner.id)"><i class="fa fa-check-circle mobile-icon"></i><span class="window-text">Accept</span></button>
+
+                                                        <!-- <button type="button" *ngIf="banner.active_status == 0" class="btn btn-success btn-banner btn-radius waves-effect waves-light m-1" (click)="bannerSwitch(banner.id)"><i class="fa fa-check-circle mobile-icon"></i><span class="window-text">Activate</span></button> -->
+                                                        <!-- <button type="button" class="btn btn-danger btn-banner btn-radius waves-effect waves-light m-1" *ngIf="banner.active_status == 1" (click)="bannerSwitch(banner.id)"> <i class="fa fa-times-circle mobile-icon"></i><span class="window-text">De-Activate</span></button> -->
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-server btn-danger" (click)="destroy(banner.id)"><i class="fa fa-trash-o fa-1x mobile-icon"></i> <span class="window-text">Reject</span></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <pagination-controls *ngIf="blogCommentList.length > 10" (pageChange)="sno = $event"></pagination-controls>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="card" *ngIf="blogCommentList.length !== 0">
+                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-wrap="false">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item " [class.active]="i === 0" *ngFor="let banner of bannerList; let i = index">
+                                        <img class="d-block w-100" src={{banner.banner_image}} alt="First slide">
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" *ngIf="bannerList.length > 1" href="#carouselExampleControls" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" *ngIf="bannerList.length > 1" href="#carouselExampleControls" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="formmodal" [class.d-block]="showPopup" [class.d-none]="!showPopup">
+            <div class="modal-dialog">
+                <div class="modal-content border-success animated" [class.swing]="errorMsg.length === 0" [class.shake]="errorMsg.length != 0">
+                    <div class="modal-header bg-success">
+                        <h5 class="modal-title text-white">{{modalBoxName}} Comments</h5>
+                        <button id="closeModal" type="button" class="close text-white" (click)="popUpClose()" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form autocomplete="off">
+                            <!-- <div class="form-group">
+                                <label>Blog Details Name</label>
+                                <input disabled [(ngModel)]="blog_name" type="text" class="form-control" id="blog_name" placeholder="Blog Name" [ngModelOptions]="{standalone: true}" >
+                                <p class="invalid-error" *ngIf="errorMsg.blog_name">{{errorMsg.blog_name}}</p>
+                            </div> -->
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input disabled [(ngModel)]="customer_name" type="text" class="form-control" id="customer_name" placeholder=" Name" [ngModelOptions]="{standalone: true}" >
+                                <p class="invalid-error" *ngIf="errorMsg.customer_name">{{errorMsg.customer_name}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Email </label>
+                                <input disabled [(ngModel)]="email" type="text" class="form-control" id="email" placeholder="E-Mail" [ngModelOptions]="{standalone: true}" >
+                                <p class="invalid-error" *ngIf="errorMsg.email">{{errorMsg.email}}</p>
+                            </div>
+                            <!-- <div class="form-group">
+                                <label>website </label>
+                                <input disabled [(ngModel)]="website" type="text" class="form-control" id="website" placeholder="WebSite" [ngModelOptions]="{standalone: true}" >
+                                <p class="invalid-error" *ngIf="errorMsg.website">{{errorMsg.website}}</p>
+                            </div> -->
+                            <div class="form-group">
+                                <label>Comment </label>
+                                <input [(ngModel)]="editBannerId" type="hidden" class="form-control" id="editBannerId" [ngModelOptions]="{standalone: true}" *ngIf="modalBoxName === 'View'">
+                                <textarea disabled [(ngModel)]="bannerName" [class.is-invalid]="errorMsg.banner_name" type="text" class="form-control" id="bannerName" placeholder="Comment" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editBannerId)" autocomplete></textarea>
+                                <p class="invalid-feedback" *ngIf="errorMsg.banner_name">{{errorMsg.banner_name}}</p>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" tabindex="-1" class="btn btn-danger" (click)="popUpClose()" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+                        <!-- <button type="button" class="btn btn-success" [ngClass]="{'btn-loading disabled': loadingBtn}" (click)="store()" *ngIf="modalBoxName === 'Create'"><i class="fa fa-check-square-o"></i> {{modalBoxName}} </button>
+                        <button type="button" class="btn btn-success" [ngClass]="{'btn-loading disabled': loadingBtn}" (click)="update(editBannerId)" *ngIf="modalBoxName === 'View'"><i class="fa fa-check-square-o"></i> {{modalBoxName}} </button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="modal " [class.d-block]="viewBox" [class.d-none]="!viewBox">
+            <div class="container boder-bottom-li animated bounceInDown">
+                <div class="title">{{viewNamePreview}}</div>
+                <button (click)="popUpClose()" class="view-close btn-danger"></button>
+                <div class="text">
+                    <div class="row">
+                        <div class="col-sm-12 ">
+                            <div class="heading">
+                            </div>
+                            <div class="body-text">
+                                <img *ngIf="showImage" src="{{viewImagePreview}}" alt="image" width="300" height="400">
+                            </div>
+                        </div>
+                        <div class="view-card">
+                            <div class="card-header">
+                                <h4 class="mb-1">Description</h4>
+                            </div>
+                            <div class="card-body text-left">
+                                <p>{{viewImageDisc}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <app-footer></app-footer>
+    </div>
+</div>

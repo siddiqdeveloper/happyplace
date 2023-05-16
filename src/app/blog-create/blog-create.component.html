@@ -1,0 +1,83 @@
+<app-header></app-header>
+<app-sidemenu></app-sidemenu>
+<div class="app sidebar-mini">
+  <div class="page">
+    <div
+      class="page-main"
+      [class.opacity-2]="viewBox"
+      [class.opacity-10]="!viewBox"
+    >
+      <div class="app-content">
+        <div class="side-app">
+        
+          <div class="page-header">
+            <h4 class="page-title">Blogs Details</h4>
+          </div>
+          <div class="card">
+            <div class="card-header-1">
+               <div class="row">
+                   <div class="col-6">
+                       <div class="card-title">
+                         <a style="color:#fff;" class="btn btn-success  width-150 button-rad" routerLink="/blogs" href="javascript:void(0);">
+                           Back</a>
+                       </div>
+                   </div>
+                   <div class="col-6 d-none"></div>
+               </div>
+            </div>
+          </div>
+                  
+          <div class="row">
+            <div class="col-md-12 col-lg-12">
+              <div class="card">
+                <div class="card-body">
+                    
+                  <form autocomplete="off">
+                    
+
+                        <div class="row">
+
+                          <div class="form-group col-6">
+                            <h2 >Blog Header </h2>
+                            <input [(ngModel)]="blogHeader" type="text" class="form-control" id="blogHeader" [placeholder]="'Enter Blog Header...'" [ngModelOptions]="{standalone: true}" >
+                            <p class="invalid-error" *ngIf="errorMsg.blogHeader">{{errorMsg.blogHeader}}</p>
+                            </div>
+    
+                            <div class="form-group col-6 ">
+                              <h2 >Tag Name </h2>
+                                <angular2-multiselect [(ngModel)]="tagNameArray" [data]="tagNameList" (keyup.enter)="openSize($event)" [settings]="TagNameSettings" [ngModelOptions]="{standalone: true}" (onDeSelectAll)="onDeSelectAllSizes($event)" #tagNameDropDown></angular2-multiselect>
+                                <p class="invalid-error" *ngIf="errorMsg.product_tagName">{{errorMsg.product_tagName}}</p>
+                           </div>
+                          
+                            <!-- <div class="form-group col-4 ">
+                              <h2>Blog Date </h2>
+                              <input type="date" [(ngModel)]="blogDate"  class="form-control" [ngModelOptions]="{ standalone: true }">
+                            </div>  -->
+                            <div class="form-group col-12 mx-auto d-flex flex-column">
+                              <h2 >Blog Content</h2>
+                            <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="blogContent" [ngModelOptions]="{standalone: true}"></angular-editor>                    
+                           </div>
+                              <button class="btn btn-success  width-150 button-rad  rounded mx-auto" *ngIf="blog_id" (click)="updateblog()" >Update</button>
+                             <button class="btn btn-success  width-150 button-rad   rounded mx-auto" *ngIf="!blog_id" (click)="Createblog()" >Create</button>
+                          </div>
+                      <!-- <div class="col-6 mb-5 mt-5">
+                        <button class="btn btn-success   rounded mx-auto" *ngIf="blog_id" (click)="updateblog()" >Update</button>
+                        <button class="btn btn-success   rounded mx-auto" *ngIf="!blog_id" (click)="Createblog()" >Create</button>
+                      </div> -->
+
+
+                   
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <app-footer></app-footer>
+    </div>
+  </div>
+</div>

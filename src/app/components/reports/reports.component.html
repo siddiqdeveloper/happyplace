@@ -1,0 +1,747 @@
+<app-header></app-header>
+<app-sidemenu></app-sidemenu>
+<div class="app sidebar-mini">
+    <div class="page">
+        <div class="page-main">
+            <div class="app-content">
+                <div class="side-app">
+                    <div class="page-header">
+                        <h4 class="page-title">Reports</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="card" *ngIf="activeBranchList.length !== 0">
+                                <div class="card-order">
+                                    <div class="group-round btn-group-sm mt-1 float-left">
+                                        <button id="branchname" class="btn mr-2 mb-1" *ngFor="let branch of activeBranchList;let i = index;" type="button" (click)="branchNameSelect(branch.branch_id, branch.branch_name, i)" [class.btn-branch-active]="i == branchClass" [class.btn-branch]=" i != branchClass">{{branch.branch_name | titlecase}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card p-4">
+                                <div class="card-header-1">
+                                    <div class="tabs-menu1 ">
+                                        <ul class="nav panel-tabs">
+                                            <li><a href="#tab2" class="active text-black" data-toggle="tab">Sales Report</a></li>
+                                            <!-- <li><a href="#tab3" class="text-black" data-toggle="tab">Expense Report</a></li>
+                                            <li><a href="#tab5" class="text-black d-none" data-toggle="tab">Product Report</a></li>
+                                            <li><a href="#tab6" class="text-black" data-toggle="tab">Cashier Report</a></li>
+                                            <li><a href="#tab7" class="text-black" data-toggle="tab">Server Report</a></li>
+                                            <li><a href="#tab8" class="text-black" data-toggle="tab">Halls Report</a></li>
+                                            <li><a href="#tab9" class="text-black" data-toggle="tab">Bill Preview Report</a></li> -->
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab2">
+                                    <div class="card">
+                                        <div class="card-header-1 m-4">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="card-title">
+                                                        <h4>Sales Report</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <div class="">
+                                                        <div class=" has-search">
+                                                            <span class="fa fa-calendar-check-o form-control-feedback"></span>
+                                                            <input autocomplete="off" type="text" class="form-control date-range d-inline" [(ngModel)]="billDate" placeholder="Select Date" bsDaterangepicker>
+                                                            <button class="range-btn btn btn-success" (click)="getBillReports('multidate')"><i class="fa fa-filter icon-space" aria-hidden="true"></i>Filter</button>
+                                                            <button (click)="getBillReports('today')" class="reset-btn button-rad btn btn-info"><i class="fa fa-repeat icon-space" aria-hidden="true"></i>Reset</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                      
+                                            <div class="text-center" [class.h-250]="loading" *ngIf="todayBillReport.length === 0">
+                                                <ngx-loading [show]="loading"></ngx-loading>
+                                                <h5>No Bill Reports Found Today</h5>
+                                            </div>
+                                            <div class="table-responsive" *ngIf="todayBillReport.length !== 0" >
+                                                <div id="salesReport">
+                                                    <h3 class="text-center">Sales Report</h3>
+                                                    <table class="table table-striped table-bordered text-nowrap w-100 text-center align-middle" >
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="wd-15p">S.no</th>
+                                                                <th class="wd-15p">Delivered Date</th>
+                                                                <th class="wd-15p">Order ID</th>
+                                                                <th class="wd-15p">Name</th>
+                                                                <th class="wd-15p">Mobile NO</th>
+                                                                <th class="wd-15p">Total Purchase</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let bill of todayBillReport| paginate: { itemsPerPage: 10, currentPage: p, id:'bill'}; let i = index">
+                                                                <td>{{i+1}}</td>
+                                                                <td>{{bill.order_delivered_at | date:'EEEE y-MMM-dd hh:mm a'}}</td>
+                                                                <td>{{bill.order_id}}</td>
+                                                                <td>{{bill.billing_name | titlecase}}</td>
+                                                                <td>{{bill.billing_mobile_number}}</td>
+                                                                <td>{{bill.order_overall_totall}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th colspan="4" class="text-right">Total :</th>
+                                                                <td>{{todayBillTotal}}</td>
+                                                            </tr>
+    
+                                                            <!-- <tr>
+                                                                <th></th>
+                                                                <th colspan="2" class="text-right">GST :</th>
+                                                                <td>{{overAllGst}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th colspan="3" class="text-right">Discount :</th>
+                                                                <td>{{discount}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th colspan="2" class="text-right">Total :</th>
+                                                                <td>{{overAllTotalAndGst - discount}}</td>
+                                                            </tr> -->
+    
+                                                        </tfoot>
+                                                        
+    
+                                                    </table>
+                                                   
+                                                </div>
+                                                <pagination-controls id="bill" *ngIf="todayBillReport.length > 10" (pageChange)="p = $event"></pagination-controls>
+                                                <div class="text-center m-2">
+                                                    <!-- <button (click)="exportXl(this.todayBillReport, 'Bill-Report')" class="btn btn-print button-rad"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export as Excel</button> -->
+                                                    <!-- <button (click)="SavePDF()" value="Download PDF" class="btn btn-print button-rad"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export as PDf</button> -->
+                                                    <!-- <button (click)="printBillReports()" value="Download PDF" class="btn btn-print button-rad"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Print Bill Reports</button> -->
+                                                    <button class="btn btn-print button-rad print-button" (click)="openPDF()"><i class="fa fa-download"  aria-hidden="true"></i>&nbsp;&nbsp; Download PDF</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="tab-pane " id="tab3">
+                                    <div class="card">
+                                        <div class="card-header-1 m-4">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="card-title">
+                                                        <h4>Expenses Report</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <div class="">
+                                                        <div class=" has-search">
+                                                            <span class="fa fa-calendar-check-o form-control-feedback"></span>
+                                                            <input autocomplete="off" type="text" class="form-control date-range d-inline" [(ngModel)]="expenseDate" placeholder="Select Date" bsDaterangepicker>
+                                                            <button class="range-btn btn btn-success" (click)="getExpenseReports('multidate')"><i class="fa fa-filter icon-space" aria-hidden="true"></i>Filter</button>
+                                                            <button (click)="getExpenseReports('today')" class="reset-btn button-rad btn btn-info"><i class="fa fa-repeat icon-space" aria-hidden="true"></i>Reset</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="text-center" [class.h-250]="loading" *ngIf="todayExpenseReport.length === 0">
+                                                <ngx-loading [show]="loading"></ngx-loading>
+                                                <h5>No Reports Found Today</h5>
+                                            </div>
+                                            <div class="table-responsive" *ngIf="todayExpenseReport.length !== 0">
+                                                <table class="table table-striped table-bordered text-nowrap w-100 text-center align-middle">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="wd-15p">S.no</th>
+                                                            <th class="wd-15p">Expense name</th>
+                                                            <th class="wd-15p">Expense Amount</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let expense of todayExpenseReport| paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+                                                            <td>{{i+1}}</td>
+                                                            <td>{{expense.expense_name | titlecase}}</td>
+                                                            <td>{{expense.expenseAmount}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th colspan="2" class="text-right">Total :</th>
+                                                            <td>{{todayExpenseTotal}}</td>
+                                                        </tr>
+                                                    </tfoot>
+
+                                                </table>
+                                                <pagination-controls *ngIf="todayExpenseReport.length > 10" (pageChange)="p = $event"></pagination-controls>
+                                                <div class="text-center m-2">
+                                                    <button (click)="exportXl(this.todayExpenseReport, 'Expense-Report')" class="btn btn-print button-rad"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export as Excel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane " id="tab5">
+                                    <div class="card">
+                                        <div class="card-header-1 m-4">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="card-title">
+                                                        <h4>Product Report</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <div class="">
+                                                        <div class=" has-search">
+                                                            <span class="fa fa-calendar-check-o form-control-feedback"></span>
+                                                            <input autocomplete="off" type="text" class="form-control date-range d-inline" [(ngModel)]="productDate" placeholder="Select Date" bsDaterangepicker>
+                                                            <button class="range-btn btn btn-success" (click)="getProductReport('multidate')"><i class="fa fa-filter icon-space" aria-hidden="true"></i>Filter</button>
+                                                            <button (click)="getProductReport('today')" class="reset-btn button-rad btn btn-info"><i class="fa fa-repeat icon-space" aria-hidden="true"></i>Reset</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="text-center" [class.h-250]="loading" *ngIf="todayProductReport.length === 0">
+                                                <ngx-loading [show]="loading"></ngx-loading>
+                                                <h5>No Reports Found Today</h5>
+                                            </div>
+                                            <div class="table-responsive" *ngIf="todayProductReport.length !== 0">
+                                                <table class="table table-striped table-bordered text-nowrap w-100 text-center align-middle">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="wd-15p">S.no</th>
+                                                            <th class="wd-15p">Hall name</th>
+                                                            <th class="wd-15p">Dish Name</th>
+                                                            <th class="wd-15p">Dish Price</th>
+                                                            <th class="wd-15p">Dish Quantity</th>
+                                                            <th class="wd-15p">Dish Total Amount</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let product of todayProductReport| paginate: { itemsPerPage: 10, currentPage: p, id:'product'}; let i = index">
+                                                            <td>{{i+1}}</td>
+                                                            <td>{{product.hall_name | titlecase}}</td>
+                                                            <td>{{product.dish_name | titlecase}}</td>
+                                                            <td>{{product.dish_price}}</td>
+                                                            <td>{{product.dish_quantity}}</td>
+                                                            <td>{{product.dish_overall_total}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <pagination-controls id="product" *ngIf="todayProductReport.length > 10" (pageChange)="p = $event"></pagination-controls>
+                                                <div class="text-center m-2">
+                                                    <button (click)="exportXl(this.todayProductReport, 'Product-Report')" class="btn btn-print button-rad"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export as Excel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane " id="tab6">
+                                    <div class="card">
+                                        <div class="card-header-1 m-4">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="card-title">
+                                                        <h4>Cashier Report</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <div class="">
+                                                        <div class=" has-search">
+                                                            <span class="fa fa-calendar-check-o form-control-feedback"></span>
+                                                            <input autocomplete="off" type="text" class="form-control date-range d-inline" [(ngModel)]="cashierDate" placeholder="Select Date" bsDaterangepicker>
+                                                            <button class="range-btn btn btn-success" (click)="getCashierReport('multidate')"><i class="fa fa-filter icon-space" aria-hidden="true"></i>Filter</button>
+                                                            <button (click)="getCashierReport('today')" class="reset-btn button-rad btn btn-info"><i class="fa fa-repeat icon-space" aria-hidden="true"></i>Reset</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="text-center" [class.h-250]="loading" *ngIf="todayCashierReport.length === 0">
+                                                <ngx-loading [show]="loading"></ngx-loading>
+                                                <h5>No Reports Found Today</h5>
+                                            </div>
+                                            <div class="table-responsive" *ngIf="todayCashierReport.length !== 0">
+                                                <table class="table table-striped table-bordered text-nowrap w-100 text-center align-middle">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="wd-15p">S.no</th>
+                                                            <th class="wd-15p">Cashier Name</th>
+                                                            <th class="wd-15p">Cashier Revenue</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let cashier of todayCashierReport| paginate: { itemsPerPage: 10, currentPage: p, id: 'cashier' }; let i = index">
+                                                            <td>{{i+1}}</td>
+                                                            <td>{{cashier.cashier_name | titlecase}}</td>
+                                                            <td>{{cashier.cashier_revenue}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th colspan="2" class="text-right">Sub Total :</th>
+                                                            <td>{{todayCashierRevenue}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th colspan="2" class="text-right">GST :</th>
+                                                            <td>{{overAllGst}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th colspan="2" class="text-right">Discount :</th>
+                                                            <td>{{discount}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th colspan="2" class="text-right"> Total :</th>
+                                                            <td>{{overAllTotalAndGst - discount}}</td>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                                <pagination-controls  id="cashier" *ngIf="todayCashierReport.length > 10" (pageChange)="p = $event"></pagination-controls>
+                                                <div class="text-center m-2">
+                                                    <button (click)="exportXl(this.todayCashierReport, 'Cashier-Report')" class="btn btn-print button-rad"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export as Excel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="tab-pane " id="tab7">
+                                    <div class="card">
+                                        <div class="card-header-1 m-4">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="card-title">
+                                                        <h4>Server Report</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <div class="">
+                                                        <div class=" has-search">
+                                                            <span class="fa fa-calendar-check-o form-control-feedback"></span>
+                                                            <input autocomplete="off" type="text" class="form-control date-range d-inline" [(ngModel)]="serverDate" placeholder="Select Date" bsDaterangepicker>
+                                                            <button class="range-btn btn btn-success" (click)="getServerReport('multidate')"><i class="fa fa-filter icon-space" aria-hidden="true"></i>Filter</button>
+                                                            <button (click)="getServerReport('today')" class="reset-btn button-rad btn btn-info"><i class="fa fa-repeat icon-space" aria-hidden="true"></i>Reset</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="text-center" [class.h-250]="loading" *ngIf="todayServerReport.length === 0">
+                                                <ngx-loading [show]="loading"></ngx-loading>
+                                                <h5>No Reports Found Today</h5>
+                                            </div>
+                                            <div class="table-responsive" *ngIf="todayServerReport.length !== 0">
+                                                <table class="table table-striped table-bordered text-nowrap w-100 text-center align-middle">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="wd-15p">S.no</th>
+                                                            <th class="wd-15p">Server Name</th>
+                                                            <th class="wd-15p">Server Revenue</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let server of todayServerReport| paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+                                                            <td>{{i+1}}</td>
+                                                            <td>{{server.server_name | titlecase}}</td>
+                                                            <td>{{server.server_revenue}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th colspan="2" class="text-right">Total :</th>
+                                                            <td>{{todayServerRevenue}}</td>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                                <pagination-controls *ngIf="todayServerReport.length > 10" (pageChange)="p = $event"></pagination-controls>
+                                                <div class="text-center m-2">
+                                                    <button (click)="exportXl(this.todayServerReport, 'Server-Report')" class="btn btn-print button-rad"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export as Excel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane " id="tab8">
+                                    <div class="card">
+                                        <div class="card-header-1 m-4">
+                                            <div class="row">
+                                                <div class="col-lg-4 col-xl-4 p-4">
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <div class="card-title d-inline">
+                                                                <h4 class="d-inline">Hall Report</h4>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <select class="form-control align-hall" id="basic-select" (change)="getHallReport('today')" [(ngModel)]="hallId" [ngModelOptions]="{standalone: true}">
+                                                        <option value="">Choose Hall</option>
+                                                        <option value="0">All</option>
+                                                        <option *ngFor="let hall of activeHallList" class="hideHall{{hall.hall_id}}" value="{{hall.hall_id}}">{{hall.hall_name | titlecase}}</option>
+                                                    </select>
+                                                        </div>
+                                                        <div class="col-2"></div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-lg-8 col-xl-8 p-4">
+                                                    <div class="">
+                                                        <div class=" has-search">
+                                                            <span class="fa fa-calendar-check-o form-control-feedback"></span>
+                                                            <input autocomplete="off" type="text" class="form-control date-range d-inline" [(ngModel)]="hallDate" placeholder="Select Date" bsDaterangepicker>
+                                                            <button class="range-btn btn btn-success" (click)="getHallReport('multidate')"><i class="fa fa-filter icon-space" aria-hidden="true"></i>Filter</button>
+                                                            <button (click)="getHallReport('today')" class="reset-btn button-rad btn btn-info"><i class="fa fa-repeat icon-space" aria-hidden="true"></i>Reset</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="card-body">
+                                            <div class="text-center" [class.h-250]="loading" *ngIf="todayHallReport.length === 0">
+                                                <ngx-loading [show]="loading"></ngx-loading>
+                                                <h5 *ngIf="!errorMsg">Choose Hall and View Details</h5>
+                                                <h5 *ngIf="errorMsg">No Reports Found Today</h5>
+                                            </div>
+                                            <div class="table-responsive" *ngIf="todayHallReport.length !== 0">
+                                                <table class="table table-striped table-bordered text-nowrap w-100 text-center align-middle">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="wd-15p">S.no</th>
+                                                            <th class="wd-15p">Hall Name</th>
+                                                            <th class="wd-15p">Dish Name</th>
+                                                            <th class="wd-15p">Dish Price</th>
+                                                            <th class="wd-15p">Dish Quantity</th>
+                                                            <th class="wd-15p">Dish Total Amount</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let hall of todayHallReport | paginate: { itemsPerPage: 10, currentPage: p , id: 'hall'}; let i = index">
+                                                            <td>{{(i+1) + ((p-1) * 10)}}</td>
+                                                            <td>{{hall.hall_name | titlecase}}</td>
+                                                            <td>{{hall.dish_name | titlecase}}</td>
+                                                            <td>{{hall.dish_price}}</td>
+                                                            <td>{{hall.dish_quantity}}</td>
+                                                            <td>{{hall.dish_overall_total}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th colspan="5" class="text-right">Sub Total :</th>
+                                                            <td>{{todayHallRevenue}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th colspan="5" class="text-right">GST :</th>
+                                                            <td>{{overAllGst}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th colspan="5" class="text-right">Discount :</th>
+                                                            <td>{{discount}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th colspan="5" class="text-right"> Total :</th>
+                                                            <td>{{overAllTotalAndGst - discount}}</td>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                                <pagination-controls id="hall" *ngIf="todayHallReport.length > 10" (pageChange)="p = $event"></pagination-controls>
+                                                <div class="text-center m-2">
+                                                    <button (click)="exportXl(this.todayHallReport, 'Hall-Report')" class="btn btn-print button-rad"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export as Excel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab9">
+                                    <div class="card">
+                                        <div class="card-header-1 m-4">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="card-title">
+                                                        <h4>Bill Preview Report</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <div class="">
+                                                        <div class=" has-search">
+                                                            <span class="fa fa-calendar-check-o form-control-feedback"></span>
+                                                            <input autocomplete="off" type="text" class="form-control date-range d-inline" [(ngModel)]="billPreviewDate" placeholder="Select Date" bsDaterangepicker>
+                                                            <button class="range-btn btn btn-success" (click)="getBillPreviewReports('multidate')"><i class="fa fa-filter icon-space" aria-hidden="true"></i>Filter</button>
+                                                            <button (click)="getBillPreviewReports('today')" class="reset-btn button-rad btn btn-info"><i class="fa fa-repeat icon-space" aria-hidden="true"></i>Reset</button>
+                                                        </div>
+                                                    </div> 
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="text-left m-2">
+                                                        <button class="btn btn-print button-rad print-button" (click)="printBill('billPreview')"><i class="fa fa-print" aria-hidden="true"></i>
+                                                            Print Bill Reports</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="text-center" [class.h-250]="loading" *ngIf="todayBillPreviewReport.length === 0">
+                                                <ngx-loading [show]="loading"></ngx-loading>
+                                                <h5>No Bill Reports Found Today</h5>
+                                            </div>
+                                            <div style="width:360px;max-height: 600px;overflow-y: scroll;">
+                                                <div class="invoice_container"  id="bill_container"  *ngIf="todayBillPreviewReport.length !== 0">
+                                                    <section class="invoice_wrapper" style="padding: 0 1em;margin-bottom: 1em; border:1px solid;" *ngFor ="let bill of todayBillPreviewReport">
+                                                        <div class="bill-details">
+                                                            <span  *ngIf ="hideHeading" style='font-size:25px;display: block;width:100%;text-align: center;'>
+                                                                <img src="./assets/images/logo.png" style="width: 60%;margin:auto;"></span>
+                                                            <table style="border-collapse: collapse;">
+                                                                <thead>
+                                                                    <tr *ngIf ="showHeading">
+                                                                        <th colspan="8" style="width:100%;font-size: 24px;font-weight: 800;text-align: center;">Alibaba 40 Golden Dishes</th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th colspan="8" style="width:100%;font-size: 12px;" class="bill_address">8A, Yanaikkal St, Simmakkal, Madurai Main, Madurai, Tamil Nadu 625001<br>ph:9597729005, 9597002409. GST No : 33BBSPM6545E1ZF.
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th colspan="8" style="width:100%;text-align: left;font-weight: 400;"> 
+                                                                            <div style="display: flex;align-items: center;">
+                                                                            <span style="display: block;width: 100%;font-weight: 800;">BILL NO: {{bill.bills_id}}
+                                                                            </span>
+                                                                            <span style="display: block; width:100%;text-align: left;font-size: 14px;">Mode : {{bill.payment_mode | uppercase }}</span>
+                                                                        </div>
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr *ngIf="showCustomer">
+                                                                        <th colspan="8" style="width: 100% !important; font-weight: 400;">
+                                                                            <div style="display: flex;align-items: center;">
+                                                                                <span style="display: block; width:100%;text-align: left;font-size: 14px;">Customer : {{bill.customer_name}} </span>
+                                                                                <span  style="display: block; width:100%;text-align: left;font-size: 14px;">Mobile : {{bill.customer_mobile}}</span> 
+                                                                            </div>
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th colspan="8" class="disp" style="width: 100% !important;font-weight: 400;">
+                                                                            <div style="display: flex;align-items: center;">
+                                                                                <span style="display: block; width:100%;text-align: left;font-size: 14px;">Type : {{bill.hall[0]?.hall_name}}</span>
+                                                                                <span style="display: block; width:100%;text-align: left;font-size: 14px;">Cashier : {{bill.cashier[0]?.cashier_name | titlecase}}</span>
+                                                                            </div>
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th colspan="8" style="width: 100% !important; font-weight: 400;">
+                                                                            <div style="display: flex;align-items: center; margin-bottom:5px;">
+                                                                                <span style="display: block; width:100%;text-align: left;font-size: 14px;">Date : {{bill.date}}</span>
+                                                                                <span style="display: block; width:100%;text-align: left;font-size: 14px;">Time : {{bill.time}}</span>
+                                                                             </div>
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <thead style="border:1px dashed;border-left: 0;border-right: 0;">
+                                                                    <tr>
+                                                                        <th colspan="1"style="font-size: 14px;">Sno</th>
+                                                                        <th colspan="4" style="text-align: center;font-size: 14px;">Item</th>
+                                                                        <th colspan="1"style="font-size: 14px;text-align: center;">Rate</th>
+                                                                        <th colspan="1"style="width: 0.1em;font-size: 14px;">Qty</th>
+                                                                        <th colspan="1" style="font-size: 14px;text-align: right;">Amount</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody style="border:1px dashed; border-left: 0;border-right: 0;">
+                                                                    <tr *ngFor="let dish of bill.bill_dish; let i=index">
+                                                                        <td colspan="1">{{(i+1) + ((num-1) * 5)}}</td>
+                                                                        <td colspan="4" style="font-size: 14px">{{dish.dish_name | titlecase}}</td>
+                                                                        <td colspan="1" style="text-align: center; font-size: 14px">{{dish.dish_price}}</td>
+                                                                        <td colspan="1" style="text-align: center; font-size: 14px">{{dish.dish_quantity}}</td>
+                                                                        <td colspan="1" style="text-align: right; font-size: 14px">{{dish.dish_total}}</td>
+                                                                    </tr>
+                                                                    <tr *ngIf="!bill.bill_dish.length">
+                                                                        <td colspan="5">
+                                                                            <h4>Dish Cart Is Empty</h4>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <td colspan="7">Qty:{{bill.bill_dish.length}}</td>
+                                                                        <td colspan="1" style="text-align: right;">{{bill.bill_sub_total}}</td>
+                                                                    </tr>
+                                                                    <tr *ngIf="bill.parcel_value !== '0.00'">
+                                                                        <td colspan="7">Parcel({{parcel}}%)</td>
+                                                                        <td colspan="1" style="text-align: right;">{{bill.parcel_value}}</td>
+                                                                    </tr>
+                                                                    <tr *ngIf="bill.gst === 'yes'">
+                                                                        <td colspan="7">CGST({{cgst}}%)</td>
+                                                                        <td colspan="1" style="text-align: right;">{{bill.cgst_value}}</td>
+                                                                    </tr>
+                                                                    <tr *ngIf="bill.gst === 'yes'">
+                                                                        <td colspan="7">SGST({{sgst}}%)</td>
+                                                                        <td colspan="1" style="text-align: right;">{{bill.sgst_value}}</td>
+                                                                    </tr>
+                                                                    <tr *ngIf="bill.round_off !== '0.00'">
+                                                                        <td colspan="7">Round Off</td>
+                                                                        <td colspan="1" style="text-align: right;">{{bill.round_off}}</td>
+                                                                    </tr>
+                                                                   
+                                                                    <tr *ngIf="bill.discount_value !== '0.00'">
+                                                                        <td colspan="7">Discount</td>
+                                                                        <td colspan="1" style="text-align: right;">-{{bill.discount_value}}</td>
+                                                                    </tr>
+                                                                    <tr  >
+                                                                        <td colspan="4"></td>
+                                                                        <td colspan="2" style="border: 1px dotted; border-right: 0;border-bottom: 0; border-left: 0;">TOTAL</td>
+                                                                        <td colspan="2" style="text-align: right; border: 1px dotted;border-bottom: 0; border-right: 0; border-left: 0;">₹ {{bill.bill_overall_total}}</td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td colspan="8" style="text-align: center;font-weight: 800; font-size: 20px;">₹ {{bill.bill_overall_total}}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="8" style="text-align: center; font-size: 14px;">* Powered by chronoinfotech.com *</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="8" style="text-align: center;">* Thank You - Visit Again *</td>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                    </section>
+
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>-->
+        <div class="row" *ngIf="showBill">
+            <div class="col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="invoice_container" id="bill_reports_container">
+                                    <section class="invoice_wrapper">
+                                        <div class="bill-details">
+                                           
+                                            <table style="border-collapse: collapse;">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="8" style="width:100%;font-size: 12px;" class="bill_address">Sales Reports</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th colspan="8" style="width:100%;text-align: left;font-weight: 400;">
+                                                            <div class="col-md-6 billing_details" id="bill_details1" style="display: flex;align-items: center;">
+                                                                <span style="display: block; width:100%;text-align: left;font-size: 14px;">Date : {{date}}</span>  
+                                                                <span style="display: block; width:100%;text-align: left;font-size: 14px;">Time : {{time}}</span> 
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                    <thead style="border:1px dashed;border-left: 0;border-right: 0;">
+                                                    <tr>
+                                                        <th colspan="2"style="font-size: 14px;">Sno</th>
+                                                        <th colspan="2" style="text-align: left;font-size: 14px;">Delivered Date</th>
+                                                        <th colspan="2"style="width: 0.1em;font-size: 14px; text-align: center; ">Order ID</th>
+                                                        <th colspan="2"style="width: 0.1em;font-size: 14px; text-align: center; ">Name</th>
+                                                        <th colspan="2"style="width: 0.1em;font-size: 14px; text-align: center; ">Mobile NO</th>
+                                                        <th colspan="2"style="width: 0.1em;font-size: 14px; text-align: center; ">Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="border:1px dashed;border-left: 0;border-right: 0;">
+                                                    <tr *ngFor="let bill of todayBillReport; let i=index">
+                                                        <td colspan="2">{{(i+1) + ((num-1) * 5)}}</td>
+                                                        <td colspan="2" style="font-size: 14px;">{{bill.order_delivered_at | date:'EEEE y-MMM-dd hh:mm a'}}</td>
+                                                        <td colspan="2" style="font-size: 14px;">{{bill.order_id}}</td>
+                                                        <td colspan="2" style="font-size: 14px;">{{bill.billing_name | titlecase}}</td>
+                                                        <!-- <td colspan="2" style="font-size: 14px;">{{bill.billing_mobile_number}}</td> -->
+                                                        <td colspan="4" style="text-align: center; font-size: 14px;">₹ {{bill.order_overall_totall}}</td>
+                                                </tbody>
+                                                <tfoot>
+                                                    <!-- <tr>
+                                                        <td colspan="5" style="text-align: center;">No of item(s) : {{todayBillReport.length}}</td>
+                                                    </tr> -->
+                                                    <tr>
+                                                        <td colspan="8" style="text-align: center;">Total Amount : {{todayBillTotal}}</td>
+                                                    </tr>
+                                                    <!-- <tr>
+                                                        <td colspan="8" style="text-align: center;">Sub Total Amount : {{todayBillTotal}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td colspan="8" style="text-align: center;">GST : {{overAllGst}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td colspan="8" style="text-align: center;">Total : {{overAllTotalAndGst}}</td>
+                                                        
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td colspan="8" style="text-align: center;">Discount : {{discount}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td colspan="8" style="text-align: center;">Total : {{overAllTotalAndGst - discount}}</td>
+                                                        
+                                                    </tr> -->
+                                                </tfoot>
+                                            </table>
+                                        </div> 
+                                         <!-- <div class="bill-details">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="5" class="bill_address">Aibaik Family Restaurant
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th colspan="5" class="bill_address">Bill Reports
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th colspan="5" style="text-align:left;border-bottom: 1px solid !important;">
+                                                            <div class="col-md-6 billing_details" id="bill_details1">
+                                                                <span>Date</span> : {{date}}<br>
+                                                            </div>
+                                                            <div class="col-md-6 billing_details" id="bill_details2">
+                                                                <span>Time</span> : {{time}}<br>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                    <tr style="border-bottom: 1px solid;">
+                                                        <th>S.No</th>
+                                                        <th>Dish Name</th>
+                                                        <th>Dish QTY</th>
+                                                        <th>Dish Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr style="border-bottom: 1px solid;" *ngFor="let bill of todayBillReport; let i=index">
+                                                        <td>{{i+1}}</td>
+                                                        <td>{{bill.dish_name | titlecase}}</td>
+                                                        <td>{{bill.dish_quantity}}</td>
+                                                        <td>₹ {{bill.dish_overall_total}}</td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th colspan="3" class="text-right">Total :</th>
+                                                        <td>₹ {{todayBillTotal}}</td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>  -->
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

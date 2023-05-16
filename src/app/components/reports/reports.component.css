@@ -1,0 +1,43 @@
+.date-range {
+    width: 50%;
+}
+
+.range-btn {
+    margin-left: 4%;
+    width: 130px;
+}
+
+.reset-btn {
+    margin-left: 2%;
+    width: 80px;
+}
+
+.btn-print {
+    color: #fff;
+    background: #009F48 !important;
+    border-color: #009F48;
+}
+option.hideHall6 {
+    display: none;
+}
+@media screen and (max-width: 1050px) {
+    .range-btn {
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .date-range {
+        width: 100%;
+    }
+    .range-btn {
+        margin-left: 0%;
+        margin-top: 2%;
+        width: 100%;
+    }
+    .reset-btn {
+        margin-left: 0%;
+        margin-top: 2%;
+        width: 100%;
+    }
+}

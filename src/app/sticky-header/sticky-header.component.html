@@ -1,0 +1,61 @@
+<app-header></app-header>
+<app-sidemenu></app-sidemenu>
+<div class="app sidebar-mini">
+  <div class="page">
+    <div
+      class="page-main"
+      [class.opacity-2]="viewBox"
+      [class.opacity-10]="!viewBox"
+    >
+      <div class="app-content">
+        <div class="side-app">
+        
+          <div class="page-header">
+            <h4 class="page-title">Sticky Header</h4>
+          </div>
+          <!-- <div class="card">
+            <div class="card-header-1">
+               <div class="row">
+                   <div class="col-6">
+                       <div class="card-title">
+                         <a style="color:#fff;" class="btn btn-success  width-150 button-rad" routerLink="/blogs" href="javascript:void(0);">
+                           Back</a>
+                       </div>
+                   </div>
+                   <div class="col-6 d-none"></div>
+               </div>
+            </div>
+          </div> -->
+                  
+          <div class="row">
+            <div class="col-md-12 col-lg-12">
+              <div class="card">
+                <div class="card-body">
+                    
+                  <form autocomplete="off">
+                    
+
+                        <div class="row">
+
+                            <div class="form-group col-12 mx-auto d-flex flex-column">
+                              <h2 >Sticky Content</h2>
+                              <textarea [(ngModel)]="header" class="form-control" id="productDesc" placeholder="Enter Product Description" [ngModelOptions]="{standalone: true}" >
+                            </textarea>
+                           </div>
+                              <button class="btn btn-success  width-150 button-rad  rounded mx-auto" (click)="updateHeader()" >Update</button>
+                          </div>
+                   
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <app-footer></app-footer>
+    </div>
+  </div>
+</div>
