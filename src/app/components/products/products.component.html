@@ -219,31 +219,114 @@
                           </div>
                             </div>
                           </div>
-                          <div class="row" *ngFor="let weight of sizeArray; let i = index;" style="position: relative; bottom: 20px;">
+                          <div class="row" style="position: relative; bottom: 20px;">
+                            
+                            <div class="col-12">
+                                <br>
+                                <h5>Size Price</h5>
+                            </div>
+                             <div class="col-12">
+                            <div class="row">
+                                
+                             
+                                <div class="col-12"  *ngFor="let weight of sizeArray; let i = index;" >
+                                      <div class="form-group" style="margin-bottom: 0.1rem !important;">
+                                        <label  for="{{weight.productPrice}}"><small class="muted" style="display: flex; justify-content: center; position: relative;top: 10px;">Price for <h6> &nbsp;&nbsp;{{weight.itemName}}</h6> </small></label>
+                                        <input   [(ngModel)]="weight.productPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productPrice" placeholder="Price for{{weight.itemName}}" [ngModelOptions]="{standalone: true}"
+                                            appNumbersOnly name="productPrice-{{i}}">
+
+                                            <!-- <input   [(ngModel)]="productPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productPrice" placeholder="Price for{{weight.itemName}}" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editProductId)"
+                                            appNumbersOnly name="productPrice-{{i}}"> -->
+
+                                        <p class="invalid-error" *ngIf="errorMsg.product_price">{{errorMsg.product_price}}
+                                        </p>
+                                    </div>
+                                    <div class="form-group" style="margin-bottom: 0.1rem !important;">
+                                        <label  for="{{weight.productDiscPrice}}"><small class="muted" style="display: flex; justify-content: center; position: relative;top: 10px;">Discount Price for <h6> &nbsp;&nbsp;{{weight.itemName}}</h6> </small></label>
+                                        <input [(ngModel)]="weight.productDiscPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productDiscPrice" placeholder="Discount Price for {{weight.itemName}}" [ngModelOptions]="{standalone: true}"
+                                            appNumbersOnly name="productDiscPrice-{{i}}">
+                                            <!-- <input [(ngModel)]="productDiscPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productDiscPrice" placeholder="Discount Price for {{weight.itemName}}" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editProductId)"
+                                            appNumbersOnly name="productDiscPrice-{{i}}"> -->
+                                        <p class="invalid-error" *ngIf="errorMsg.product_discount_price">{{errorMsg.product_discount_price}}
+                                        </p>
+                                    </div>
+                                    </div>
+                                       
+
+                            </div>
+                        </div>
+                            
+
+                            <div class="col-6" style="display:none">
+
+                                <div class="row">
+                                
+                             
+                                <div class="col-12"  *ngFor="let weight of colorArray; let i = index;" >
+                                      <div class="form-group" style="margin-bottom: 0.1rem !important;">
+                                        <label  for="{{weight.productPrice}}"><small class="muted" style="display: flex; justify-content: center; position: relative;top: 10px;">Price for <h6> &nbsp;&nbsp;{{weight.itemName}}</h6> </small></label>
+                                        <input   [(ngModel)]="weight.productPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productPrice" placeholder="Price for{{weight.itemName}}" [ngModelOptions]="{standalone: true}"
+                                            appNumbersOnly name="productPrice-{{i}}">
+
+                                            <!-- <input   [(ngModel)]="productPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productPrice" placeholder="Price for{{weight.itemName}}" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editProductId)"
+                                            appNumbersOnly name="productPrice-{{i}}"> -->
+
+                                        <p class="invalid-error" *ngIf="errorMsg.product_price">{{errorMsg.product_price}}
+                                        </p>
+                                    </div>
+                                    <div class="form-group" style="margin-bottom: 0.1rem !important;">
+                                        <label  for="{{weight.productDiscPrice}}"><small class="muted" style="display: flex; justify-content: center; position: relative;top: 10px;">Discount Price for <h6> &nbsp;&nbsp;{{weight.itemName}}</h6> </small></label>
+                                        <input [(ngModel)]="weight.productDiscPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productDiscPrice" placeholder="Discount Price for {{weight.itemName}}" [ngModelOptions]="{standalone: true}"
+                                            appNumbersOnly name="productDiscPrice-{{i}}">
+                                            <!-- <input [(ngModel)]="productDiscPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productDiscPrice" placeholder="Discount Price for {{weight.itemName}}" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editProductId)"
+                                            appNumbersOnly name="productDiscPrice-{{i}}"> -->
+                                        <p class="invalid-error" *ngIf="errorMsg.product_discount_price">{{errorMsg.product_discount_price}}
+                                        </p>
+                                    </div>
+                                    </div>
+                                       
+
+                            </div>
+
+
+
+
+                              
+                            </div>
+
+                             <div class="col-6">
+
+                                <div class="row">
+                                    <div class="form-group" style="margin-bottom: 0.1rem !important;">
+                                        <label>Select Default Price</label>
+                                        <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedSize" >
+                                            
+                                            <option *ngFor="let weight of sizeArray; let i = index;" value="{{weight.id}}"  >
+                                                    {{weight.itemName}}
+
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
                             <div class="col-6">
-                              <div class="form-group" style="margin-bottom: 0.1rem !important;">
-                                <label  for="{{weight.productPrice}}"><small class="muted" style="display: flex; justify-content: center; position: relative;top: 10px;">Price for <h6> &nbsp;&nbsp;{{weight.itemName}}</h6> </small></label>
-                                <input   [(ngModel)]="productPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productPrice" placeholder="Price for{{weight.itemName}}" [ngModelOptions]="{standalone: true}"
-                                    appNumbersOnly name="productPrice-{{i}}">
 
-                                    <!-- <input   [(ngModel)]="productPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productPrice" placeholder="Price for{{weight.itemName}}" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editProductId)"
-                                    appNumbersOnly name="productPrice-{{i}}"> -->
+                                <div class="row">
+                                    <div class="form-group" style="margin-bottom: 0.1rem !important;">
+                                        <label>Select Default Color</label>
+                                        <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedColor" >
+                                            <option *ngFor="let weight of colorArray; let i = index;" value="{{weight.id}}"  >
+                                                {{weight.itemName}}
+                                            </option>
+                                        </select>
 
-                                <p class="invalid-error" *ngIf="errorMsg.product_price">{{errorMsg.product_price}}
-                                </p>
-                            </div>
-                            </div>
+                                    </div>
 
-                            <div class="col-6">
-                              <div class="form-group" style="margin-bottom: 0.1rem !important;">
-                                <label  for="{{weight.productDiscPrice}}"><small class="muted" style="display: flex; justify-content: center; position: relative;top: 10px;">Discount Price for <h6> &nbsp;&nbsp;{{weight.itemName}}</h6> </small></label>
-                                <input [(ngModel)]="productDiscPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productDiscPrice" placeholder="Discount Price for {{weight.itemName}}" [ngModelOptions]="{standalone: true}"
-                                    appNumbersOnly name="productDiscPrice-{{i}}">
-                                    <!-- <input [(ngModel)]="productDiscPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productDiscPrice" placeholder="Discount Price for {{weight.itemName}}" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editProductId)"
-                                    appNumbersOnly name="productDiscPrice-{{i}}"> -->
-                                <p class="invalid-error" *ngIf="errorMsg.product_discount_price">{{errorMsg.product_discount_price}}
-                                </p>
-                            </div>
+                                </div>
                             </div>
                           </div>
                             <div class="form-group">

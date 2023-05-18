@@ -272,8 +272,8 @@ export class ProductsComponent implements OnInit {
         this.colorId.push(element.id);
       });
       this.sub_category_id =  this.sub_category_id.toString();
-      this.selectedSize = this.sizeId.toString();
-      this.selectedColor = this.colorId.toString();
+      // this.selectedSize = this.sizeId.toString();
+      // this.selectedColor = this.colorId.toString();
       this.selectedTag = this.tagNameArrayId.toString();
 
 
@@ -293,7 +293,6 @@ export class ProductsComponent implements OnInit {
             const value = data.data;
             this.editProductId = id;
             this.editSubCategoryId  = id;
-
             this.productTags = value.product_tags;
             this.SubCategoryId = value.sub_category.sub_category_name;
             this.sizeArray = value.product_sizes;
@@ -305,7 +304,8 @@ export class ProductsComponent implements OnInit {
             this.product_description_sort = value.product_description_sort;
             this.edit_on_sale = value.on_sale=='1'?true:false;
             this.edit_best_seller = value.best_seller=='1'?true:false;
-
+            this.selectedSize = value.selectSizes;
+            this.selectedColor = value.selectColor;
             this.on_sale = value.on_sale=='1'?true:false;
             this.best_seller = value.best_seller=='1'?true:false;
             this.productName = value.product_name;
@@ -355,8 +355,8 @@ export class ProductsComponent implements OnInit {
     this.sub_category_id =  this.sub_category_id.toString();
     console.log("232",this.sub_category_id)
 
-    this.selectedSize = this.sizeId.toString();
-    this.selectedColor = this.colorId.toString();
+    // this.selectedSize = this.sizeId.toString();
+    // this.selectedColor = this.colorId.toString();
     this.selectedTag = this.tagNameArrayId.toString();
 
    const abc = this.subcategory.filter(sub => {
@@ -418,17 +418,18 @@ export class ProductsComponent implements OnInit {
             sub_category_id:this.SubCategoryId.id,
             // color:this.colorArray,
             product_color:this.colorArray,
+            sizes:this.sizeArray,
             pricebasedonWeight : this.testingArray,
 
         } : value;
 
         console.log(value);
 
-        if(this.selectedSize.length && this.selectedColor.length && this.selectedTag.length) {
+        // if(this.selectedSize.length && this.selectedColor.length && this.selectedTag.length) {
             value['product_sizes'] = this.selectedSize,
             value['color'] = this.selectedColor
             value['product_tags'] = this.selectedTag
-        }
+        // }
 
         this.apiService[name](url, value).subscribe((data) => {
             if (data.error === false) {
@@ -514,7 +515,8 @@ export class ProductsComponent implements OnInit {
         this.productPrice =
         this.productDiscPrice =
         this.productDesc =
-        this.colorArray =
+        this.colorArray = [];
+        this.sizeArray = [];
         this.tagNameArray =
         this.SubCategoryId=
         this.selectedSize = '';
