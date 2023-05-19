@@ -401,8 +401,14 @@ export class ProductsComponent implements OnInit {
 
 
     apiCall(name, url, value: any = '') {
+        console.log(this.sizeArray,this.selectedSize);
 
+        let Dis = this.sizeArray.find((item)=>{
+            return item.id == this.selectedSize;
+        });
         value = name === 'store' || name === 'update' ? {
+
+
 
             category_id : this.categoryName.id,
             category_name:this.categoryName,
@@ -412,9 +418,9 @@ export class ProductsComponent implements OnInit {
             best_seller:this.best_seller,
             youtube_link:this.youtube_link,
             product_description_sort:this.product_description_sort,
-            product_price: this.productPrice.toString(),
-            product_discount_price: this.productDiscPrice.toString() == (null || 0 || "") ? this.productPrice.toString() : this.productDiscPrice.toString(),
-            product_description: this.productDesc,
+            product_price:  Dis.productPrice,//this.productPrice.toString(),
+            product_discount_price: Dis.productDiscPrice, //this.productDiscPrice.toString() == (null || 0 || "") ? this.productPrice.toString() : this.productDiscPrice.toString(),
+            product_description:this.productDesc,
             sub_category_id:this.SubCategoryId.id,
             // color:this.colorArray,
             product_color:this.colorArray,
