@@ -24,6 +24,9 @@ export class PromoCodesComponent implements OnInit {
     editPromoId = '';
     modalBoxName;
     loadingBtn = false;
+    type = 'category';
+    category_id = '';
+    product_id = '';
 
     constructor(private apiService: ApiService, private toastr: ToastrService) { }
 

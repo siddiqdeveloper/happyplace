@@ -99,6 +99,41 @@
                     </div>
                     <div class="modal-body">
                         <form autocomplete="off">
+
+                            <div class="form-group">
+                                <select [(ngModel)]="type" type="text" class="form-control" id="type" placeholder="Enter Minimum Value" [ngModelOptions]="{standalone: true}" 
+                                    appNumbersOnly>
+                                    <option value="category">Category</option>
+                                    <option value="product">Product</option>
+                               
+                               </select>
+                                <p class="invalid-error" *ngIf="errorMsg.min_value">{{errorMsg.min_value}}</p>
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>Select Category Name</label>
+                                 <select [(ngModel)]="category_id" type="text" class="form-control" id="type" placeholder="Enter Minimum Value" [ngModelOptions]="{standalone: true}" 
+                                    appNumbersOnly>
+                                    <option value="category">Category</option>
+                                    <option value="product">Product</option>
+                               
+                               </select>
+                            
+                            </div>
+
+                             <div class="form-group">
+
+                                <label>Select Product Name</label>
+                                 <select [(ngModel)]="product_id" type="text" class="form-control" id="type" placeholder="Enter Minimum Value" [ngModelOptions]="{standalone: true}" 
+                                    appNumbersOnly>
+                                    <option value="category">Category</option>
+                                    <option value="product">Product</option>
+                               
+                               </select>
+                            
+                            </div>
+
                             <div class="form-group">
                                 <input [(ngModel)]="editPromoId" type="hidden" class="form-control" id="editPromoId" [ngModelOptions]="{standalone: true}" *ngIf="modalBoxName === 'Edit'">
                                 <input [(ngModel)]="promoCode" (input)="promoCode=$event.target.value.toUpperCase()" [class.is-invalid]="errorMsg.promo_code" type="text" class="form-control" id="promoCode" placeholder="Enter Promo Code" [ngModelOptions]="{standalone: true}" autocomplete="off">
