@@ -27,6 +27,8 @@ export class PromoCodesComponent implements OnInit {
     type = 'category';
     category_id = '';
     product_id = '';
+    categoryList:any = [];
+    productList:any = [];
 
     constructor(private apiService: ApiService, private toastr: ToastrService) { }
 
@@ -41,6 +43,15 @@ export class PromoCodesComponent implements OnInit {
             this.promoList = data.data;
             this.loading = false;
         });
+
+        this.apiService.getData('getActiveSubCategory').subscribe(data => {
+            this.categoryList = data.data;
+        });
+        
+        this.apiService.index('product').subscribe(data => {
+            this.productList = data.data;
+        });
+       
     }
 
 
@@ -49,12 +60,27 @@ export class PromoCodesComponent implements OnInit {
         this.apiCall('store', 'promo');
     }
 
+    onSelectChange(selectedValue: string) {
+      // Handle the selected value
+     
+      if(selectedValue == 'category'){
+        this.product_id = null;
+      }else{
+        this.category_id = null;
+
+      }
+      // Perform additional actions based on the selected value
+    }
+
     show(id) {
         this.apiService.show('promo/' + id).subscribe((data) => {
             const value = data.data;
             this.promoCode = value.promo_code;
             this.minValue = value.min_value;
             this.discount = value.discount;
+            this.category_id = value.category_id;
+            this.product_id = value.product_id;
+            this.type = value.type;
             this.editPromoId = id;
         });
     }
@@ -92,7 +118,10 @@ export class PromoCodesComponent implements OnInit {
         value = name === 'store' || name === 'update' ? {
             promo_code: this.promoCode,
             min_value: this.minValue,
-            discount: this.discount
+            discount: this.discount,
+            type:this.type,
+            category_id:this.category_id,
+            product_id:this.product_id
         } : value;
         this.apiService[name](url, value).subscribe((data) => {
             if (data.error === false) {
