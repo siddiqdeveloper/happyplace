@@ -42,6 +42,9 @@ import { ReportsComponent } from './components/reports/reports.component';
 import { StickyHeaderComponent } from './sticky-header/sticky-header.component';
 import {TestimonialsComponent} from './components/testimonials/testimonials.component';
 import {ShippingComponent} from './components/shipping/shipping.component';
+import {CouponCodesComponent} from './components/coupon-codes/coupon-codes.component';
+import {ContactsComponent} from './components/contacts/contacts.component';
+import {SubscribeComponent} from './components/subscribes/subscribe.component';
 
 const routes: Routes = [
     {path: 'categories', component: CategoryComponent},
@@ -69,6 +72,7 @@ const routes: Routes = [
     {path: 'mobile-banner', component: MobileBannerComponent},
     {path: 'mobile-banner-image/:id', component: MobileBannerImageComponent},
     {path: 'promo-code', component: PromoCodesComponent},
+    {path: 'coupon-code', component: CouponCodesComponent},
     {path: 'header-menu', component: HeaderMenuComponent},
     {path: '', component: LoginComponent},
     {path: 'dashboard', component: DashboardComponent},
@@ -83,6 +87,8 @@ const routes: Routes = [
     {path:'sticky-header',component:StickyHeaderComponent},
     {path:'testimonials',component:TestimonialsComponent},
     {path:'shipping',component:ShippingComponent},
+    {path:'subscribers',component:SubscribeComponent},
+    {path:'contactenquiry',component:ContactsComponent},
 
     // {path: 'users', component: UsersComponent, data: {role: 'user'}, canActivate: [AuthGuard]},
     {path: 'users', component: UsersComponent},

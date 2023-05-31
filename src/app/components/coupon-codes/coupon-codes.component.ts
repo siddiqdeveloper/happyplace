@@ -7,10 +7,10 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-promo-codes',
-    templateUrl: './promo-codes.component.html',
-    styleUrls: ['./promo-codes.component.css']
+    templateUrl: './coupon-codes.component.html',
+    styleUrls: ['./coupon-codes.component.css']
 })
-export class PromoCodesComponent implements OnInit {
+export class CouponCodesComponent implements OnInit {
 
     searchField: FormControl = new FormControl();
     errorMsg: any = [];
@@ -27,9 +27,9 @@ export class PromoCodesComponent implements OnInit {
     type = 'category';
     category_id = '';
     product_id = '';
-    date:any= '';
     categoryList:any = [];
     productList:any = [];
+    date:any= '';
 
     constructor(private apiService: ApiService, private toastr: ToastrService) { }
 
@@ -42,7 +42,7 @@ export class PromoCodesComponent implements OnInit {
         this.loading = true;
         this.apiService.index('promo').subscribe(data => {
           this.promoList = data.data.filter((res:any)=>{
-            return res.data_type == '0';
+            return res.data_type == 1;
           });
             this.loading = false;
         });
@@ -105,7 +105,7 @@ export class PromoCodesComponent implements OnInit {
     search() {
         this.searchField.valueChanges.pipe(debounceTime(200), distinctUntilChanged(), switchMap((query) =>
             this.apiService.searchData('searchPromo', query)
-        )).subscribe((result) => {
+        )).subscribe((result:any) => {
             if (this.searchField.value === '') {
                 this.index();
                 return false;
@@ -113,10 +113,9 @@ export class PromoCodesComponent implements OnInit {
             if (result.data.length === 0) {
                 this.promoList = [];
             } else {
-
-              this.promoList = result.data.filter((res:any)=>{
-                return res.data_type == '0';
-              });
+                this.promoList = result.data.filter((res:any)=>{
+                  return res.data_type == 1;
+                });
             }
         });
     }
@@ -127,9 +126,10 @@ export class PromoCodesComponent implements OnInit {
             min_value: this.minValue,
             discount: this.discount,
             type:this.type,
-            date:this.date,
             category_id:this.category_id,
-            product_id:this.product_id
+            product_id:this.product_id,
+            date:this.date,
+            data_type:1
         } : value;
         this.apiService[name](url, value).subscribe((data) => {
             if (data.error === false) {

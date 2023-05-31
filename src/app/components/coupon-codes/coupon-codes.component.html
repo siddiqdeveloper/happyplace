@@ -6,14 +6,14 @@
             <div class="app-content">
                 <div class="side-app">
                     <div class="page-header">
-                        <h4 class="page-title">Promo Code</h4>
+                        <h4 class="page-title">Coupon Code</h4>
                     </div>
                     <div class="card">
                         <div class="card-header-1">
                             <div class="row">
                                 <div class="col-6">
                                     <div class="card-title">
-                                        <button class="btn btn-success create-btn-radius" (click)="openModalBox()"><i class="fa fa-plus-circle icon-space" aria-hidden="true"></i>Create Promo Code</button>
+                                        <button class="btn btn-success create-btn-radius" (click)="openModalBox()"><i class="fa fa-plus-circle icon-space" aria-hidden="true"></i>Create Coupon Code</button>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -34,12 +34,12 @@
                             <div class="card p-4" [class.h-250]="loading" *ngIf="promoList.length == 0">
                                 <ngx-loading [show]="loading"></ngx-loading>
                                 <div class="card-header-1">
-                                    <h4 class="text-center">Promo Code Not Available</h4>
+                                    <h4 class="text-center">Coupon Not Available</h4>
                                 </div>
                             </div>
                             <div class="card" *ngIf="promoList.length != 0">
                                 <div class="card-header">
-                                    <div class="card-title">List of Promo Code - ( {{promoList.length}} )</div>
+                                    <div class="card-title">List of Coupon - ( {{promoList.length}} )</div>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -92,50 +92,13 @@
             <div class="modal-dialog">
                 <div class="modal-content border-dark animated" [class.swing]="errorMsg.length === 0" [class.shake]="errorMsg.length != 0">
                     <div class="modal-header bg-dark">
-                        <h5 class="modal-title text-white">{{modalBoxName}} Promo Code</h5>
+                        <h5 class="modal-title text-white">{{modalBoxName}} Coupon Code</h5>
                         <button id="closeModal" type="button" class="close text-white" (click)="popUpClose()" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <form autocomplete="off">
-
-                            <div class="form-group">
-                                 <label>Select Type</label>
-                                <select [(ngModel)]="type" (change)="onSelectChange($event.target.value)" type="text" class="form-control" id="type" placeholder="Enter Minimum Value" [ngModelOptions]="{standalone: true}"
-                                    appNumbersOnly>
-                                    <option value="category">Category</option>
-                                    <option value="product">Product</option>
-
-                               </select>
-                                <p class="invalid-error" *ngIf="errorMsg.min_value">{{errorMsg.min_value}}</p>
-                            </div>
-
-                            <div class="form-group"  *ngIf="type == 'category'">
-
-                                <label>Select Category Name</label>
-                                 <select [(ngModel)]="category_id"  type="text" class="form-control" id="type" placeholder="Enter Minimum Value" [ngModelOptions]="{standalone: true}"
-                                    appNumbersOnly>
-                                    <option value=""></option>
-                                    <option *ngFor="let item of categoryList" value="{{item.id}}">{{item.sub_category_name}}</option>
-
-
-                               </select>
-
-                            </div>
-
-                             <div class="form-group"  *ngIf="type == 'product'">
-
-                                <label>Select Product Name</label>
-                                 <select [(ngModel)]="product_id" type="text" class="form-control" id="type" placeholder="Enter Minimum Value" [ngModelOptions]="{standalone: true}"
-                                    appNumbersOnly>
-                                    <option value=""></option>
-                                    <option *ngFor="let item of productList" value="{{item.id}}">{{item.product_name}}</option>
-
-                               </select>
-
-                            </div>
-
                             <div class="form-group">
                                 <input [(ngModel)]="editPromoId" type="hidden" class="form-control" id="editPromoId" [ngModelOptions]="{standalone: true}" *ngIf="modalBoxName === 'Edit'">
                                 <input [(ngModel)]="promoCode" (input)="promoCode=$event.target.value.toUpperCase()" [class.is-invalid]="errorMsg.promo_code" type="text" class="form-control" id="promoCode" placeholder="Enter Promo Code" [ngModelOptions]="{standalone: true}" autocomplete="off">
@@ -161,10 +124,9 @@
                                 <p class="invalid-error" *ngIf="errorMsg.min_value">{{errorMsg.min_value}}
                                 </p>
                             </div>
-
                           <div class="form-group">
                             <input [(ngModel)]="date" type="date" class="form-control" id="date" placeholder="Enter Date" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editPromoId)"
-                                   >
+                            >
                             <p class="invalid-error" *ngIf="errorMsg.date">{{errorMsg.date}}
                             </p>
                           </div>

@@ -76,6 +76,9 @@ import { ReportsComponent } from './components/reports/reports.component';
 import { StickyHeaderComponent } from './sticky-header/sticky-header.component';
 import {TestimonialsComponent} from './components/testimonials/testimonials.component';
 import {ShippingComponent} from './components/shipping/shipping.component';
+import {CouponCodesComponent} from './components/coupon-codes/coupon-codes.component';
+import {SubscribeComponent} from './components/subscribes/subscribe.component';
+import {ContactsComponent} from './components/contacts/contacts.component';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -148,7 +151,10 @@ export class AuthInterceptor implements HttpInterceptor {
         ReportsComponent,
         StickyHeaderComponent,
         TestimonialsComponent,
-        ShippingComponent
+        ShippingComponent,
+        CouponCodesComponent,
+        SubscribeComponent,
+      ContactsComponent
     ],
     imports: [
         BrowserModule,

@@ -153,11 +153,7 @@
                                  <input [(ngModel)]="editofferTime" type="hidden" class="form-control" id="editSubCategoryId" [ngModelOptions]="{standalone: true}">
                                 <input type="datetime-local"  class="category-details form-control" [(ngModel)]="offerTime" [ngModelOptions]="{standalone: true}"> 
                             </div>
-                              <div class="col-6">
-                                 
-                                <input type="text" placeholder="Enter Youtube Link" class="category-details form-control" [(ngModel)]="youtube_link" [ngModelOptions]="{standalone: true}"> 
-                            </div>
-
+                           
 
                              <div class="col-6">
                                 <label>On Sale</label>
@@ -358,6 +354,12 @@
                                 <p class="invalid-error" *ngIf="errorMsg.product_description">
                                     {{errorMsg.product_description}}</p>
                             </div>
+
+                             <div class="form-group">
+                                 
+                                <input type="text" placeholder="Enter Youtube Link" class="category-details form-control" [(ngModel)]="youtube_link" [ngModelOptions]="{standalone: true}"> 
+                            </div>
+
 
                         </form>
                     </div>

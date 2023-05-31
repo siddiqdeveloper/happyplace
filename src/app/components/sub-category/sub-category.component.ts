@@ -25,7 +25,7 @@ export class SubCategoryComponent implements OnInit {
     subCategoryDesc: any = '';
     categoryId = '';
     categoryName = '';
-    tagArray = [];
+    tagArray = [{id:1}];
     tagId = [];
     activeTagsList: any = [];
     activeCategoryList: any = [];

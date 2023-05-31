@@ -141,7 +141,7 @@
                                 <p class="invalid-error" *ngIf="errorMsg.sub_category_name">{{errorMsg.sub_category_name}}
                                 </p>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display:none">
                                 <angular2-multiselect [data]="activeTags" [(ngModel)]="tagArray" (keyup.enter)="dropDownOpen($event)" [settings]="dropdownSettings" [ngModelOptions]="{standalone: true}" (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)"
                                     (onDeSelectAll)="onDeSelectAll($event)" #dropdownRef></angular2-multiselect>
                                 <p class="invalid-error" *ngIf="errorMsg.sub_category_tags">
