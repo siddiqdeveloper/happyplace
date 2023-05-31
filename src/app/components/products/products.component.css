@@ -253,6 +253,11 @@ h3 {
 
 }
 
+.modal-body{
+    height: 651px;
+    overflow-y: scroll;
+}
+
     .modal-lg-c{
             max-width: 1305px !important;
     }
