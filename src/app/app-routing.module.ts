@@ -45,6 +45,8 @@ import {ShippingComponent} from './components/shipping/shipping.component';
 import {CouponCodesComponent} from './components/coupon-codes/coupon-codes.component';
 import {ContactsComponent} from './components/contacts/contacts.component';
 import {SubscribeComponent} from './components/subscribes/subscribe.component';
+import {ProductsViewComponent} from './components/products-view/products-view.component';
+import {ProductsCreateComponent} from './components/products-create/products-create.component';
 
 const routes: Routes = [
     {path: 'categories', component: CategoryComponent},
@@ -56,6 +58,8 @@ const routes: Routes = [
     {path: 'sizes', component: SizesComponent},
     {path: 'color', component: ColorsComponent},
     {path: 'products', component: ProductsComponent},
+    {path: 'product/create', component: ProductsCreateComponent},
+    {path: 'products/:id', component: ProductsViewComponent},
     {path: 'product-image/:id', component: ProductImageComponent},
     {path: 'link-products', component: LinkProductsComponent},
     {path: 'linking-products/:id', component: LinkingProductsComponent},

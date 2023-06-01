@@ -13,8 +13,9 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="card-title">
-                                        <button class="btn btn-success  width-150 button-rad" (click)="openModalBox('Create')"><i class="fa fa-plus-circle icon-space"
-                                                aria-hidden="true"></i>Create Product</button>
+                                      <button class="btn btn-success  width-150 button-rad" [routerLink]="['/product/create']" routerLinkActive="router-link-active"><i class="zmdi zmdi-arrow-left icon-space"
+                                                                                                                                                                                       aria-hidden="true"></i>Create Product</button>
+
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -151,9 +152,9 @@
                             </div>
                             <div class="col-6">
                                  <input [(ngModel)]="editofferTime" type="hidden" class="form-control" id="editSubCategoryId" [ngModelOptions]="{standalone: true}">
-                                <input type="datetime-local"  class="category-details form-control" [(ngModel)]="offerTime" [ngModelOptions]="{standalone: true}"> 
+                                <input type="datetime-local"  class="category-details form-control" [(ngModel)]="offerTime" [ngModelOptions]="{standalone: true}">
                             </div>
-                           
+
 
                              <div class="col-6">
                                 <label>On Sale</label>
@@ -163,7 +164,7 @@
                                  <label>Best Seller</label>
                                 <input type="checkbox"   [(ngModel)]="best_seller" [ngModelOptions]="{standalone: true}"     name="checkbox">
 
-                               
+
                             </div>
 
 
@@ -216,15 +217,15 @@
                             </div>
                           </div>
                           <div class="row" style="position: relative; bottom: 20px;">
-                            
+
                             <div class="col-12">
                                 <br>
                                 <h5>Size Price</h5>
                             </div>
                              <div class="col-12">
                             <div class="row">
-                                
-                             
+
+
                                 <div class="col-12"  *ngFor="let weight of sizeArray; let i = index;" >
                                       <div class="form-group" style="margin-bottom: 0.1rem !important;">
                                         <label  for="{{weight.productPrice}}"><small class="muted" style="display: flex; justify-content: center; position: relative;top: 10px;">Price for <h6> &nbsp;&nbsp;{{weight.itemName}}</h6> </small></label>
@@ -247,17 +248,17 @@
                                         </p>
                                     </div>
                                     </div>
-                                       
+
 
                             </div>
                         </div>
-                            
+
 
                             <div class="col-6" style="display:none">
 
                                 <div class="row">
-                                
-                             
+
+
                                 <div class="col-12"  *ngFor="let weight of colorArray; let i = index;" >
                                       <div class="form-group" style="margin-bottom: 0.1rem !important;">
                                         <label  for="{{weight.productPrice}}"><small class="muted" style="display: flex; justify-content: center; position: relative;top: 10px;">Price for <h6> &nbsp;&nbsp;{{weight.itemName}}</h6> </small></label>
@@ -280,14 +281,14 @@
                                         </p>
                                     </div>
                                     </div>
-                                       
+
 
                             </div>
 
 
 
 
-                              
+
                             </div>
 
                              <div class="col-6">
@@ -296,7 +297,7 @@
                                     <div class="form-group" style="margin-bottom: 0.1rem !important;">
                                         <label>Select Default Price</label>
                                         <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedSize" >
-                                            
+
                                             <option *ngFor="let weight of sizeArray; let i = index;" value="{{weight.id}}"  >
                                                     {{weight.itemName}}
 
@@ -326,8 +327,8 @@
                             </div>
                           </div>
                             <div class="form-group">
-                                 <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="productDesc" [ngModelOptions]="{standalone: true}"></angular-editor>   
-                               <!--   
+                                 <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="productDesc" [ngModelOptions]="{standalone: true}"></angular-editor>
+                               <!--
                                 <textarea [(ngModel)]="productDesc" class="form-control" id="productDesc" placeholder="Enter Product Description" [ngModelOptions]="{standalone: true}" >
                                 </textarea> -->
 
@@ -345,7 +346,7 @@
                                 <textarea [(ngModel)]="product_description_sort" class="form-control" id="product_description_sort" placeholder="Enter Product Sort Description " [ngModelOptions]="{standalone: true}" >
                                 </textarea>
 
-                                
+
 
                                 <!-- <textarea [(ngModel)]="product_description_sort" class="form-control" id="product_description_sort" placeholder="Enter Product Description" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editProductId)">
                                 </textarea> -->
@@ -356,8 +357,8 @@
                             </div>
 
                              <div class="form-group">
-                                 
-                                <input type="text" placeholder="Enter Youtube Link" class="category-details form-control" [(ngModel)]="youtube_link" [ngModelOptions]="{standalone: true}"> 
+
+                                <input type="text" placeholder="Enter Youtube Link" class="category-details form-control" [(ngModel)]="youtube_link" [ngModelOptions]="{standalone: true}">
                             </div>
 
 

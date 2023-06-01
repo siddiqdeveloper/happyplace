@@ -1,0 +1,394 @@
+<app-header></app-header>
+<app-sidemenu></app-sidemenu>
+<div class="app sidebar-mini">
+    <div class="page">
+        <div class="page-main" [class.opacity-2]="viewBox" [class.opacity-10]="!viewBox">
+            <div class="app-content">
+                <div class="side-app">
+                    <div class="page-header">
+                        <h4 class="page-title">Products</h4>
+                    </div>
+                    <div class="card">
+                        <div class="card-header-1">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="card-title">
+
+                                      <button  class="btn btn-success  width-150 button-rad" [routerLink]="['/products']" routerLinkActive="router-link-active"><i class="zmdi zmdi-arrow-left icon-space"
+                                                                                                                                                                                       aria-hidden="true"></i>Back</button>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="">
+                                        <form class="search-bar search-server">
+                                            <div class=" has-search">
+                                                <span class="fa fa-search form-control-feedback"></span>
+                                                <input [formControl]="searchField" type="text" class="form-control" placeholder="Search">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding:20px;background:white">
+
+
+                      <form autocomplete="off" id="create-form"  #productcreation="ngForm">
+                        <div class="row">
+                          <div class="col-6" style="display:none;">
+                            <div class="form-group mb-5">
+                              <input [(ngModel)]="editProductId" type="hidden" class="form-control" id="editProductId" [ngModelOptions]="{standalone: true}">
+                              <ng-autocomplete id="categoryName" class="category-details" notFoundText="Category Not Found" placeHolder="Category Name" [data]="categories" [searchKeyword]="keyword" [itemTemplate]="itemTemplate"
+                                               [notFoundTemplate]="notFoundTemplate" [(ngModel)]="categoryName" [ngModelOptions]="{standalone: true}" (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' #auto>
+                              </ng-autocomplete>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group mb-5">
+                              <input [(ngModel)]="editSubCategoryId" type="hidden" class="form-control" id="editSubCategoryId" [ngModelOptions]="{standalone: true}">
+                              <ng-autocomplete id='SubCategoryId' class="category-details" notFoundText="sub Category Not Found" placeHolder="Category Name" [data]="subcategory" [searchKeyword]="keyword" [itemTemplate]="itemTemplate"
+                                               [notFoundTemplate]="notFoundTemplate" [(ngModel)]="SubCategoryId" [ngModelOptions]="{standalone: true}" (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' #auto>
+                              </ng-autocomplete>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <input [(ngModel)]="editofferTime" type="hidden" class="form-control" id="editSubCategoryId" [ngModelOptions]="{standalone: true}">
+                            <input type="datetime-local"  class="category-details form-control" [(ngModel)]="offerTime" [ngModelOptions]="{standalone: true}">
+                          </div>
+
+
+                          <div class="col-6">
+                            <label>On Sale</label>
+                            <input type="checkbox"   [(ngModel)]="on_sale" [ngModelOptions]="{standalone: true}"     name="checkbox">
+
+
+                            <label>Best Seller</label>
+                            <input type="checkbox"   [(ngModel)]="best_seller" [ngModelOptions]="{standalone: true}"     name="checkbox">
+
+
+                          </div>
+
+
+                        </div>
+                        <div class="row">
+                          <div class="col-6"><ng-template #itemTemplate let-item>
+                            <div class="item">
+                              <span [innerHTML]="item.name"></span>
+                            </div>
+                          </ng-template></div>
+                          <div class="col-6">
+                            <ng-template #notFoundTemplate let-notFound>
+                              <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                            <p class="invalid-error" *ngIf="errorMsg.category_id">Category Name field is required
+                            </p>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="form-group  ">
+                              <angular2-multiselect [(ngModel)]="tagNameArray" [data]="tagNameList" (keyup.enter)="openSize($event)" [settings]="TagNameSettings" [ngModelOptions]="{standalone: true}" (onDeSelectAll)="onDeSelectAllSizes($event)" #tagNameDropDown></angular2-multiselect>
+                              <p class="invalid-error" *ngIf="errorMsg.product_tagName">{{errorMsg.product_tagName}}
+                              </p>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group">
+                              <angular2-multiselect [(ngModel)]="sizeArray" [data]="sizesList" (keyup.enter)="openSize($event)" [settings]="sizeSettings" [ngModelOptions]="{standalone: true}" (onDeSelectAll)="onDeSelectAllSizes($event)" #sizeDropDown></angular2-multiselect>
+                              <p class="invalid-error" *ngIf="errorMsg.product_weight">{{errorMsg.product_weight}}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="form-group">
+                              <angular2-multiselect [(ngModel)]="colorArray" [data]="colorList" (keyup.enter)="openColor($event)" [settings]="colorSettings" [ngModelOptions]="{standalone: true}" (onDeSelectAll)="onDeSelectAllcolor($event)" #colorDropDown></angular2-multiselect>
+                              <p class="invalid-error" *ngIf="errorMsg.product_color">{{errorMsg.product_color}}
+                              </p>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group">
+                              <!-- <input [(ngModel)]="productName" type="text" class="form-control" id="productName" placeholder="Enter Product Name" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editProductId)"> -->
+                              <input [(ngModel)]="productName" type="text" class="form-control" id="productName" placeholder="Enter Product Name" [ngModelOptions]="{standalone: true}" >
+                              <p class="invalid-error" *ngIf="errorMsg.product_name">{{errorMsg.product_name}}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row" style="position: relative; bottom: 20px;">
+
+                          <div class="col-12">
+                            <br>
+                            <h5>Size Price</h5>
+                          </div>
+                          <div class="col-12">
+                            <div class="row">
+
+
+                              <div class="col-12"  *ngFor="let weight of sizeArray; let i = index;" >
+                                <div class="form-group" style="margin-bottom: 0.1rem !important;">
+                                  <label  for="{{weight.productPrice}}"><small class="muted" style="display: flex; justify-content: center; position: relative;top: 10px;">Price for <h6> &nbsp;&nbsp;{{weight.itemName}}</h6> </small></label>
+                                  <input   [(ngModel)]="weight.productPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productPrice" placeholder="Price for{{weight.itemName}}" [ngModelOptions]="{standalone: true}"
+                                           appNumbersOnly name="productPrice-{{i}}">
+
+                                  <!-- <input   [(ngModel)]="productPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productPrice" placeholder="Price for{{weight.itemName}}" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editProductId)"
+                                  appNumbersOnly name="productPrice-{{i}}"> -->
+
+                                  <p class="invalid-error" *ngIf="errorMsg.product_price">{{errorMsg.product_price}}
+                                  </p>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0.1rem !important;">
+                                  <label  for="{{weight.productDiscPrice}}"><small class="muted" style="display: flex; justify-content: center; position: relative;top: 10px;">Discount Price for <h6> &nbsp;&nbsp;{{weight.itemName}}</h6> </small></label>
+                                  <input [(ngModel)]="weight.productDiscPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productDiscPrice" placeholder="Discount Price for {{weight.itemName}}" [ngModelOptions]="{standalone: true}"
+                                         appNumbersOnly name="productDiscPrice-{{i}}">
+                                  <!-- <input [(ngModel)]="productDiscPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productDiscPrice" placeholder="Discount Price for {{weight.itemName}}" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editProductId)"
+                                  appNumbersOnly name="productDiscPrice-{{i}}"> -->
+                                  <p class="invalid-error" *ngIf="errorMsg.product_discount_price">{{errorMsg.product_discount_price}}
+                                  </p>
+                                </div>
+                              </div>
+
+
+                            </div>
+                          </div>
+
+
+                          <div class="col-6" style="display:none">
+
+                            <div class="row">
+
+
+                              <div class="col-12"  *ngFor="let weight of colorArray; let i = index;" >
+                                <div class="form-group" style="margin-bottom: 0.1rem !important;">
+                                  <label  for="{{weight.productPrice}}"><small class="muted" style="display: flex; justify-content: center; position: relative;top: 10px;">Price for <h6> &nbsp;&nbsp;{{weight.itemName}}</h6> </small></label>
+                                  <input   [(ngModel)]="weight.productPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productPrice" placeholder="Price for{{weight.itemName}}" [ngModelOptions]="{standalone: true}"
+                                           appNumbersOnly name="productPrice-{{i}}">
+
+                                  <!-- <input   [(ngModel)]="productPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productPrice" placeholder="Price for{{weight.itemName}}" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editProductId)"
+                                  appNumbersOnly name="productPrice-{{i}}"> -->
+
+                                  <p class="invalid-error" *ngIf="errorMsg.product_price">{{errorMsg.product_price}}
+                                  </p>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0.1rem !important;">
+                                  <label  for="{{weight.productDiscPrice}}"><small class="muted" style="display: flex; justify-content: center; position: relative;top: 10px;">Discount Price for <h6> &nbsp;&nbsp;{{weight.itemName}}</h6> </small></label>
+                                  <input [(ngModel)]="weight.productDiscPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productDiscPrice" placeholder="Discount Price for {{weight.itemName}}" [ngModelOptions]="{standalone: true}"
+                                         appNumbersOnly name="productDiscPrice-{{i}}">
+                                  <!-- <input [(ngModel)]="productDiscPrice" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productDiscPrice" placeholder="Discount Price for {{weight.itemName}}" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editProductId)"
+                                  appNumbersOnly name="productDiscPrice-{{i}}"> -->
+                                  <p class="invalid-error" *ngIf="errorMsg.product_discount_price">{{errorMsg.product_discount_price}}
+                                  </p>
+                                </div>
+                              </div>
+
+
+                            </div>
+
+
+
+
+
+                          </div>
+
+                          <div style="display:none"  class="col-6">
+
+                            <div class="row">
+                              <div class="form-group" style="margin-bottom: 0.1rem !important;">
+                                <label>Select Default Price</label>
+                                <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedSize" >
+
+                                  <option *ngFor="let weight of sizeArray; let i = index;" value="{{weight.id}}"  >
+                                    {{weight.itemName}}
+
+                                  </option>
+                                </select>
+
+                              </div>
+
+
+                            </div>
+                          </div>
+
+                          <div style="display:none"  class="col-6">
+
+                            <div class="row">
+                              <div class="form-group" style="margin-bottom: 0.1rem !important;">
+                                <label>Select Default Color</label>
+                                <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedColor" >
+                                  <option *ngFor="let weight of colorArray; let i = index;" value="{{weight.id}}"  >
+                                    {{weight.itemName}}
+                                  </option>
+                                </select>
+
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="productDesc" [ngModelOptions]="{standalone: true}"></angular-editor>
+                          <!--
+                           <textarea [(ngModel)]="productDesc" class="form-control" id="productDesc" placeholder="Enter Product Description" [ngModelOptions]="{standalone: true}" >
+                           </textarea> -->
+
+
+
+                          <!-- <textarea [(ngModel)]="productDesc" class="form-control" id="productDesc" placeholder="Enter Product Description" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editProductId)">
+                          </textarea> -->
+                          <!-- <angular-e [(ngModel)]="productDesc" class="form-control" id="productDesc" placeholder="Enter Product Description" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editProductId)">
+                          </angular-e> -->
+                          <p class="invalid-error" *ngIf="errorMsg.product_description">
+                            {{errorMsg.product_description}}</p>
+                        </div>
+
+                        <div class="form-group">
+                                <textarea [(ngModel)]="product_description_sort" class="form-control" id="product_description_sort" placeholder="Enter Product Sort Description " [ngModelOptions]="{standalone: true}" >
+                                </textarea>
+
+
+
+                          <!-- <textarea [(ngModel)]="product_description_sort" class="form-control" id="product_description_sort" placeholder="Enter Product Description" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editProductId)">
+                          </textarea> -->
+                          <!-- <angular-e [(ngModel)]="product_description_sort" class="form-control" id="product_description_sort" placeholder="Enter Product Description" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editProductId)">
+                          </angular-e> -->
+                          <p class="invalid-error" *ngIf="errorMsg.product_description">
+                            {{errorMsg.product_description}}</p>
+                        </div>
+
+                        <div class="form-group">
+
+                          <input type="text" placeholder="Enter Youtube Link" class="category-details form-control" [(ngModel)]="youtube_link" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <button type="button" class="btn btn-success" [ngClass]="{'btn-loading disabled': loadingBtn}" (click)="store(productcreation)" *ngIf="modalBoxName === 'Create'"><i
+                          class="fa fa-check-square-o"></i> {{modalBoxName}} </button>
+                        <button type="button" class="btn btn-success" [ngClass]="{'btn-loading disabled': loadingBtn}" (click)="update(editProductId)" *ngIf="modalBoxName === 'Edit'"><i
+                          class="fa fa-check-square-o"></i> {{modalBoxName}} </button>
+
+                      </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal " id="formmodal" [class.d-block]="showPopup" [class.d-none]="!showPopup">
+            <div class="modal-dialog modal-lg modal-lg-c">
+                <div class="modal-content border-dark animated" [class.swing]="errorMsg.length === 0" [class.shake]="errorMsg.length != 0">
+                    <div class="modal-header bg-dark">
+                        <h5 class="modal-title text-white">{{modalBoxName}} Products</h5>
+                        <button id="closeModal" type="button" class="close text-white" data-dismiss="modal" (click)="popUpClose()" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="popUpClose()"><i
+                                class="fa fa-times"></i> Cancel</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal " [class.d-block]="viewBox" [class.d-none]="!viewBox">
+            <div class="container boder-bottom-li animated bounceInDown">
+                <div class="title">{{productName}} - {{categoryName}}</div>
+                <button (click)="popUpClose()" class="view-close btn-danger"></button>
+                <div class="text">
+                    <div class="row">
+                        <div class="col-sm-12 ">
+                            <div class="heading">
+                            </div>
+                            <div class="ml-50">
+                                <div class="body-text popup-slide">
+                                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-wrap="false">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item " [class.active]="i === 0" *ngFor="let banner of productImages; let i = index">
+                                                <img class="d-block w-100" src={{banner.product_image}} alt="First slide">
+                                            </div>
+                                        </div>
+                                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view-card">
+                            <div class="card-header">
+                                <h4 class="mb-1">Prices</h4>
+                            </div>
+                            <div class="container-fluid">
+                                <div class="form-row">
+                                    <div class="col-6">
+                                        <input class="form-control text-center" value="Price - ₹ {{productPrice}}" type="text" disabled>
+                                    </div>
+                                    <div class="col-6">
+                                        <input class="form-control text-center" value="Discounted Price - ₹ {{productDiscPrice}}" type="text" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view-card">
+                            <div class="card-header">
+                                <h4 class="mb-1">Description</h4>
+                            </div>
+                            <div class="px-4 text-left card-body">
+                                <p>{{productDesc}}</p>
+                            </div>
+                            <div class="card-header">
+                                <h4 class="mb-1">Sizes</h4>
+                            </div>
+                            <div class="px-4 text-left card-body" *ngIf="sizeArray.length">
+                                <span *ngFor="let item of sizeArray">{{item.itemName}}, </span>
+                            </div>
+                            <div class="px-4 text-left card-body" *ngIf="!sizeArray.length">
+                                <span>No Sizes Available</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal " id="formmodal" [class.d-block]="stockBox" [class.d-none]="!stockBox">
+            <div class="modal-dialog">
+                <div class="modal-content border-dark animated" [class.swing]="errorMsg.length === 0" [class.shake]="errorMsg.length != 0">
+                    <div class="modal-header bg-dark">
+                        <h5 class="modal-title text-white">{{modalBoxName}} - {{stockProductName}}</h5>
+                        <button id="closeModal" type="button" class="close text-white" data-dismiss="modal" (click)="popUpClose()" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form autocomplete="off" [formGroup]="stockForm">
+                            <div *ngFor="let stock of productStocks;let i = index" class="form-group">
+                                <label *ngIf="stock.size_id" for="size">Size ({{stock.size[0].size_name}}):</label>
+                                <!-- <input *ngIf="stock.size_id" type="text" class="form-control" id={{stock.size[0].size_name}} [formControlName]="stock.id" placeholder="Enter Quantity Of {{stock.size[0].size_name}}" (keypress)="$event.keyCode == 13 ? updateProductStocks() : null" appNumbersOnly>
+                                <input *ngIf="!stock.size_id" type="text" class="form-control" [formControlName]="stock.id" placeholder="Enter Quantity Of {{stockProductName}}" (keypress)="$event.keyCode == 13 ? updateProductStocks() : null" appNumbersOnly> -->
+                                <input *ngIf="stock.size_id" type="text" class="form-control" id={{stock.size[0].size_name}} [formControlName]="stock.id" placeholder="Enter Quantity Of {{stock.size[0].size_name}}"  appNumbersOnly>
+                                <input *ngIf="!stock.size_id" type="text" class="form-control" [formControlName]="stock.id" placeholder="Enter Quantity Of {{stockProductName}}"  appNumbersOnly>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning input-group-btn"
+                        data-dismiss="modal" (click)="outOfStocks()"><i
+                            class="fa fa-thumbs-down"></i> Out Of Stock</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="popUpClose()"><i
+                                class="fa fa-times"></i> Cancel</button>
+                        <button type="button" class="btn btn-success" [ngClass]="{'btn-loading disabled': loadingBtn}" (click)="updateProductStocks()"><i class="fa fa-check-square-o"></i> Update </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>
