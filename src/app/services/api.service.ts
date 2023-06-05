@@ -13,12 +13,15 @@ export class ApiService {
     //
 
         // apiURL = 'http://192.168.0.54:8001/api'
-   
+
     constructor(private http: HttpClient) { }
 
     private getToken() {
         headers = head.set('Authorization', `Bearer ${localStorage.getItem('user_token')}`);
     }
+
+
+
 
     public getData(url, params: any = '') {
         this.getToken();
@@ -43,6 +46,29 @@ export class ApiService {
         this.getToken();
         return this.http.get<any>(`${this.apiURL}/` + params, { headers });
     }
+
+    public getProductList() {
+      this.getToken();
+      return this.http.get<any>(`${this.apiURL}/` +'product', { headers });
+    }
+
+  public bestdealUpdateproductget() {
+    this.getToken();
+    return this.http.get<any>(`${this.apiURL}/` +'bestdealUpdateproductget', { headers });
+  }
+
+  public  bestdealUpdateproductDelete(data){
+    return this.http.post<any>(`${this.apiURL}/` +'bestdealUpdateproductDelete', data,{ headers });
+  }
+
+
+  public bestdealUpdateproduct(data) {
+    this.getToken();
+    return this.http.post<any>(`${this.apiURL}/` +'bestdealUpdateproduct', data, { headers });
+  }
+
+
+
 
     public store(params, data) {
         return this.http.post<any>(`${this.apiURL}/` + params, data, { headers });

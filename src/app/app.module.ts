@@ -81,6 +81,7 @@ import {SubscribeComponent} from './components/subscribes/subscribe.component';
 import {ContactsComponent} from './components/contacts/contacts.component';
 import {ProductsViewComponent} from './components/products-view/products-view.component';
 import {ProductsCreateComponent} from './components/products-create/products-create.component';
+import {BestProductsComponent} from './components/products-bestdeal/best-products.component';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -158,7 +159,8 @@ export class AuthInterceptor implements HttpInterceptor {
         SubscribeComponent,
       ContactsComponent,
       ProductsViewComponent,
-      ProductsCreateComponent
+      ProductsCreateComponent,
+      BestProductsComponent
     ],
     imports: [
         BrowserModule,
