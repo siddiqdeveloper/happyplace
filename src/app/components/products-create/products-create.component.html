@@ -229,6 +229,7 @@
                           </div>
                         </div>
                         <div class="form-group">
+                          <label>Product Desc </label>
                           <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="productDesc" [ngModelOptions]="{standalone: true}"></angular-editor>
                           <!--
                            <textarea [(ngModel)]="productDesc" class="form-control" id="productDesc" placeholder="Enter Product Description" [ngModelOptions]="{standalone: true}" >
@@ -245,8 +246,13 @@
                         </div>
 
                         <div class="form-group">
-                                <textarea [(ngModel)]="product_description_sort" class="form-control" id="product_description_sort" placeholder="Enter Product Sort Description " [ngModelOptions]="{standalone: true}" >
-                                </textarea>
+                             <label>Product Short Desc </label>
+
+                             <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="product_description_sort" [ngModelOptions]="{standalone: true}"></angular-editor><div>
+                               
+                             </div>
+                               <!--  <textarea [(ngModel)]="product_description_sort" class="form-control" id="product_description_sort" placeholder="Enter Product Sort Description " [ngModelOptions]="{standalone: true}" >
+                                </textarea> -->
 
 
 

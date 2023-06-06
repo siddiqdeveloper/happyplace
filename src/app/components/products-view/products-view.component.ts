@@ -409,9 +409,18 @@ export class ProductsViewComponent implements OnInit {
     apiCall(name, url, value: any = '') {
         console.log(this.sizeArray,this.selectedSize);
 
-        let Dis = this.sizeArray.find((item)=>{
-            return item.id == this.selectedSize;
-        });
+        // let Dis = this.sizeArray.find((item)=>{
+        //     return item.id == this.selectedSize;
+        // });
+
+        let Dis = this.sizeArray[0];
+
+          if(!Dis){
+
+               this.toastr.error('Please enter price details');
+                this.loadingBtn = false;
+            return false;
+        }
         value = name === 'store' || name === 'update' ? {
 
 
