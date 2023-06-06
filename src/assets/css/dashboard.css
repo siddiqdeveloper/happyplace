@@ -10702,11 +10702,11 @@ ul.inbox-pagination li {
     }
 }
 
-ul {
+/*ul {
     list-style-type: none;
     padding: 0px;
     margin: 0px;
-}
+}*/
 
 .br-100 {
     border-radius: 100% !important;
