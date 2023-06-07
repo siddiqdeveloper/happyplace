@@ -167,11 +167,12 @@
                                             <th class="wd-15p">Remove</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="box-list">
-                                        <tr *ngFor="let product of allImageList; let i = index;">
-                                            <td>
-                                                {{i + 1}}
-                                            </td>
+                                    <tbody cdkDropList class="example-list" (cdkDropListDropped)="drop($event)" class="box-list">
+
+                                        <tr *ngFor="let product of allImageList; let i = index;" cdkDrag>
+                                           <td>
+                                            {{product.product_image_id}}
+                                        </td>
                                             <td>
                                                 <img src="{{product.product_image}}" class="image">
                                             </td>

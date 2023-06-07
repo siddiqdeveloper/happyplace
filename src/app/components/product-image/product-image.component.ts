@@ -4,7 +4,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray} from '@angular/cdk/drag-drop';
 import { ImageService } from 'src/app/services/image.service';
 import { NgxImageCompressService } from 'ngx-image-compress';
 
@@ -245,5 +245,13 @@ export class ProductImageComponent implements OnInit {
      this.showModal = true
 
     }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.allImageList, event.previousIndex, event.currentIndex);
+    console.log(this.allImageList)
+    this.apiService.imageosorting({data:this.allImageList}).subscribe((res)=>{
+      this.toastr.success('Sorting Updated');
+    })
+  }
 
 }

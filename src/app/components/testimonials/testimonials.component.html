@@ -50,6 +50,8 @@
                                                     <th class="wd-15p">Customer Name</th>
                                                   <th class="wd-15p">Customer Review</th>
                                                   <th class="wd-15p">Customer Place</th>
+                                                    <th class="wd-15p">Img</th>
+                                                    <th class="wd-15p">Img</th>
                                                     <th class="wd-15p">Status</th>
                                                     <th class="wd-15p">Edit</th>
                                                     <th class="wd-10p">Value</th>
@@ -62,6 +64,20 @@
                                                     <td>{{size.customer_name | titlecase}}</td>
                                                     <td style="width:200px">{{size.customer_review | titlecase}}</td>
                                                   <td>{{size.customer_place | titlecase}}</td>
+
+                                                  <td>
+
+                                                    <img src="{{size.testimonials_image}}" style="width:200px"/>
+                                                  </td>
+
+
+
+
+                                                  <td>
+                                                    <button class="btn btn-server btn-success" [routerLink]="['/testimonials-image', size.id]"><i
+                                                      class="fa fa-pencil-square-o fa-1x mobile-icon"></i><span
+                                                      class="window-text">Image </span></button>
+                                                  </td>
                                                     <td>
                                                         <span class=" text-success status_icon m-1 " *ngIf="size.active_status == 1"><i class="fa fa-smile-o mr-2 mobile-icon" aria-hidden="true"></i><span class="window-text"> Active</span></span>
                                                         <span class=" text-danger status_icon m-1 " *ngIf="size.active_status == 0"><i class="fa fa-frown-o mr-2 mobile-icon" aria-hidden="true"></i><span class="window-text"> In-Active</span></span>
@@ -69,6 +85,7 @@
                                                     <td><button *ngIf="size.active_status == 1" class="btn btn-server btn-success" (click)="openModalBox(size.id)"><i class="fa fa-pencil-square-o fa-1x mobile-icon" ></i><span class="window-text">Edit</span> </button>
                                                         <button class="btn btn-server btn-danger" disabled *ngIf="size.active_status == 0"><i class="fa fa-pencil-square-o fa-1x mobile-icon" ></i><span class="window-text">Edit</span> </button>
                                                     </td>
+
                                                     <td>
                                                         <button type="button" *ngIf="size.active_status == 0" class="btn btn-success btn-size btn-radius waves-effect waves-light m-1" (click)="sizeSwitch(size.id)"><i class="fa fa-check-circle mobile-icon"></i><span class="window-text">Activate </span></button>
                                                         <button type="button" class="btn btn-danger btn-size btn-radius waves-effect waves-light m-1" *ngIf="size.active_status == 1" (click)="sizeSwitch(size.id)"> <i class="fa fa-times-circle mobile-icon"></i><span class="window-text">De-Activate</span></button>

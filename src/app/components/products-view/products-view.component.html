@@ -52,7 +52,7 @@
                               </ng-autocomplete>
                             </div>
                           </div>
-                          <div class="col-6">
+                          <div class="col-6" style="display:none">
                             <input [(ngModel)]="editofferTime" type="hidden" class="form-control" id="editSubCategoryId" [ngModelOptions]="{standalone: true}">
                             <input type="datetime-local"  class="category-details form-control" [(ngModel)]="offerTime" [ngModelOptions]="{standalone: true}">
                           </div>
@@ -249,7 +249,7 @@
                             <label>Product Short Desc</label>
                            <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="product_description_sort" [ngModelOptions]="{standalone: true}"></angular-editor>
 
-<!-- 
+<!--
                                 <textarea [(ngModel)]="product_description_sort" class="form-control" id="product_description_sort" placeholder="Enter Product Sort Description " [ngModelOptions]="{standalone: true}" >
                                 </textarea> -->
 

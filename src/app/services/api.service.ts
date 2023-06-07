@@ -57,8 +57,13 @@ export class ApiService {
     return this.http.get<any>(`${this.apiURL}/` +'bestdealUpdateproductget', { headers });
   }
 
+
   public  bestdealUpdateproductDelete(data){
     return this.http.post<any>(`${this.apiURL}/` +'bestdealUpdateproductDelete', data,{ headers });
+  }
+
+  public  imageosorting(data){
+    return this.http.post<any>(`${this.apiURL}/` +'imageosorting', data,{ headers });
   }
 
 

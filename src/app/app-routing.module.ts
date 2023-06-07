@@ -48,6 +48,7 @@ import {SubscribeComponent} from './components/subscribes/subscribe.component';
 import {ProductsViewComponent} from './components/products-view/products-view.component';
 import {ProductsCreateComponent} from './components/products-create/products-create.component';
 import {BestProductsComponent} from './components/products-bestdeal/best-products.component';
+import {TestimonialsImgComponent} from './components/test-image/testimonials-img.component';
 
 const routes: Routes = [
     {path: 'categories', component: CategoryComponent},
@@ -92,6 +93,7 @@ const routes: Routes = [
     {path:'reports-details',component:ReportsComponent},
     {path:'sticky-header',component:StickyHeaderComponent},
     {path:'testimonials',component:TestimonialsComponent},
+    {path:'testimonials-image/:id', component: TestimonialsImgComponent},
     {path:'shipping',component:ShippingComponent},
     {path:'subscribers',component:SubscribeComponent},
     {path:'contactenquiry',component:ContactsComponent},
