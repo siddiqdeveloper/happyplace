@@ -49,6 +49,7 @@ import {ProductsViewComponent} from './components/products-view/products-view.co
 import {ProductsCreateComponent} from './components/products-create/products-create.component';
 import {BestProductsComponent} from './components/products-bestdeal/best-products.component';
 import {TestimonialsImgComponent} from './components/test-image/testimonials-img.component';
+import {AgeProductsComponent} from './components/products-age/age-products.component';
 
 const routes: Routes = [
     {path: 'categories', component: CategoryComponent},
@@ -61,6 +62,7 @@ const routes: Routes = [
     {path: 'color', component: ColorsComponent},
     {path: 'products', component: ProductsComponent},
     {path: 'product/create', component: ProductsCreateComponent},
+     {path: 'product/age', component: AgeProductsComponent},
      {path: 'product/best', component: BestProductsComponent},
     {path: 'products/:id', component: ProductsViewComponent},
     {path: 'product-image/:id', component: ProductImageComponent},

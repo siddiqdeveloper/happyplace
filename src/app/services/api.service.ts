@@ -73,9 +73,25 @@ export class ApiService {
   }
 
 
+  public ageUpdateproduct(data) {
+    this.getToken();
+    return this.http.post<any>(`${this.apiURL}/` +'ageUpdateproduct', data, { headers });
+  }
+
+  public ageUpdateproductget() {
+    this.getToken();
+    return this.http.get<any>(`${this.apiURL}/` +'ageUpdateproductget', { headers });
+  }
 
 
-    public store(params, data) {
+  public  ageUpdateproductDelete(data){
+    return this.http.post<any>(`${this.apiURL}/` +'ageUpdateproductDelete', data,{ headers });
+  }
+
+
+
+
+  public store(params, data) {
         return this.http.post<any>(`${this.apiURL}/` + params, data, { headers });
     }
 
