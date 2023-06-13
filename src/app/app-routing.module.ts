@@ -65,7 +65,7 @@ const routes: Routes = [
      {path: 'product/age', component: AgeProductsComponent},
      {path: 'product/best', component: BestProductsComponent},
     {path: 'products/:id', component: ProductsViewComponent},
-    {path: 'product-image/:id', component: ProductImageComponent},
+    {path: 'product-image/:id/:name', component: ProductImageComponent},
     {path: 'link-products', component: LinkProductsComponent},
     {path: 'linking-products/:id', component: LinkingProductsComponent},
     {path: 'orders', component: OrdersComponent},

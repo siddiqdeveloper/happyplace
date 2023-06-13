@@ -449,7 +449,7 @@ export class ProductsCreateComponent implements OnInit {
         // if(this.selectedSize.length && this.selectedColor.length && this.selectedTag.length) {
             value['product_sizes'] = this.selectedSize,
             value['color'] = this.selectedColor
-            value['product_tags'] = this.selectedTag
+            value['product_tags'] = 1;
         // }
 
         this.apiService[name](url, value).subscribe((data) => {

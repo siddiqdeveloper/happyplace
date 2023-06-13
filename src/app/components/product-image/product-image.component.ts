@@ -33,7 +33,7 @@ export class ProductImageComponent implements OnInit {
     loadingBtn: boolean;
     imageWidth:any='';
     imageHeigth:any='';
-
+    name:any = [];
     constructor(
         private apiService: ApiService,
         private toastr: ToastrService,
@@ -49,6 +49,7 @@ export class ProductImageComponent implements OnInit {
     }
 
     listAllProducts() {
+        this.name = this.route.snapshot.paramMap.get('name');
         this.loading = true;
         this.apiService.getData('productDetails', this.route.snapshot.paramMap.get('id')).subscribe(data => {
 

@@ -41,7 +41,13 @@
                             </div>
                             <div class="card" *ngIf="productList.length != 0">
                                 <div class="card-header">
-                                    <div class="card-title">List of Products - ( {{productList.length}} )</div>
+
+                                  <div class="card-title" style="margin-right:20px">List of Products - ( {{productList.length}} )</div>
+
+                                  <label style="margin-left:10px">All <input type="radio" (change)="filter()" value="all"   [(ngModel)]="filter_type" [ngModelOptions]="{standalone: true}" name="filter_type"></label>
+                                  <label style="margin-left:10px">A On Sale <input type="radio"  (change)="filter()"  value="on_sale"   [(ngModel)]="filter_type" [ngModelOptions]="{standalone: true}" name="filter_type"> </label>
+                                  <label style="margin-left:10px">A Best Seller <input type="radio" (change)="filter()"    value="best_seller"  [(ngModel)]="filter_type" [ngModelOptions]="{standalone: true}" name="filter_type"></label>
+
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -87,7 +93,7 @@
                                                         <button class="btn btn-server btn-success" (click)="openModalBox('Edit', product.id)"><i class="fa fa-pencil-square-o fa-1x mobile-icon"></i><span class="window-text">Edit </span></button>
                                                     </td>
                                                     <td>
-                                                        <button class="btn btn-server btn-success" [routerLink]="['/product-image', product.product_slug]"><i class="fa fa-pencil-square-o fa-1x mobile-icon"></i><span class="window-text">Image </span></button>
+                                                        <button class="btn btn-server btn-success" [routerLink]="['/product-image', product.product_slug,product.product_name]"><i class="fa fa-pencil-square-o fa-1x mobile-icon"></i><span class="window-text">Image </span></button>
                                                     </td>
                                                     <td>
                                                       <button type="button" class="btn btn-success btn-round btn-radius waves-effect waves-light m-1" *ngIf="product.stock_status == 0" (click)="productSwitchStock(product.id)"><i

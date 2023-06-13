@@ -62,7 +62,7 @@ export class ProductsComponent implements OnInit {
   TagNameSettings = {}
   colorSettings ={};
   tagSettings ={};
-
+  filter_type
   categories: any = [];
   subcategory: any = []
   productTagName : any = []
@@ -95,7 +95,7 @@ export class ProductsComponent implements OnInit {
   productTagsss: any;
   itemName: any;
   subcategory_id: any;
-
+  productListOg:any = [];
   constructor(public router:Router,private apiService: ApiService, private toastr: ToastrService, private imageService: ImageService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -239,6 +239,7 @@ export class ProductsComponent implements OnInit {
     this.loading = true;
     this.apiService.index('product').subscribe(data => {
       this.productList = data.data;
+      this.productListOg = data.data
       this.loading = false;
     });
   }
@@ -605,6 +606,27 @@ export class ProductsComponent implements OnInit {
       element.patchValue(0);
     });
     this.updateProductStocks();
+  }
+
+
+  filter(){
+    if(this.filter_type == 'all'){
+      this.productList = this.productListOg
+    }
+
+    if(this.filter_type == 'on_sale'){
+      this.productList = this.productListOg.filter((item)=>{
+        return item.on_sale == 1;
+      })
+
+    }
+
+    if(this.filter_type == 'best_seller'){
+      this.productList = this.productListOg.filter((item)=>{
+        return item.best_seller == 1;
+      })
+    }
+
   }
 
 
