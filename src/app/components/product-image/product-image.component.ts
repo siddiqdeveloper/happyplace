@@ -247,8 +247,8 @@ export class ProductImageComponent implements OnInit {
 
     }
 
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.allImageList, event.previousIndex, event.currentIndex);
+  drop() {
+    
     console.log(this.allImageList)
     this.apiService.imageosorting({data:this.allImageList}).subscribe((res)=>{
       this.toastr.success('Sorting Updated');

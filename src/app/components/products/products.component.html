@@ -98,10 +98,10 @@
                                                     <td>
                                                       <button type="button" class="btn btn-success btn-round btn-radius waves-effect waves-light m-1" *ngIf="product.stock_status == 0" (click)="productSwitchStock(product.id)"><i
                                                               class="fa fa-check-circle mobile-icon"></i><span
-                                                              class="window-text">Activate</span></button>
+                                                              class="window-text">Stock On</span></button>
                                                       <button type="button" *ngIf="product.stock_status == 1" class="btn btn-danger btn-round btn-radius waves-effect waves-light m-1" (click)="productSwitchStock(product.id)"><i
                                                               class="fa fa-times-circle mobile-icon"></i><span
-                                                              class="window-text">De-Activate</span></button>
+                                                              class="window-text">Stock Off</span></button>
                                                   </td>
                                                     <td>
                                                         <button type="button" class="btn btn-success btn-round btn-radius waves-effect waves-light m-1" *ngIf="product.active_status == 0" (click)="productSwitch(product.id)"><i

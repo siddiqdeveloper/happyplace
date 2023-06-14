@@ -86,14 +86,14 @@
                           </div>
                         </div>
                         <div class="row">
-                          <div class="col-6">
+                          <div class="col-6" style="display:none">
                             <div class="form-group  ">
                               <angular2-multiselect [(ngModel)]="tagNameArray" [data]="tagNameList" (keyup.enter)="openSize($event)" [settings]="TagNameSettings" [ngModelOptions]="{standalone: true}" (onDeSelectAll)="onDeSelectAllSizes($event)" #tagNameDropDown></angular2-multiselect>
                               <p class="invalid-error" *ngIf="errorMsg.product_tagName">{{errorMsg.product_tagName}}
                               </p>
                             </div>
                           </div>
-                          <div class="col-6">
+                          <div class="col-12">
                             <div class="form-group">
                               <angular2-multiselect [(ngModel)]="sizeArray" [data]="sizesList" (keyup.enter)="openSize($event)" [settings]="sizeSettings" [ngModelOptions]="{standalone: true}" (onDeSelectAll)="onDeSelectAllSizes($event)" #sizeDropDown></angular2-multiselect>
                               <p class="invalid-error" *ngIf="errorMsg.product_weight">{{errorMsg.product_weight}}
