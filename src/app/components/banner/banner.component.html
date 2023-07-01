@@ -111,7 +111,10 @@
                             <div class="form-group">
                                 <input [(ngModel)]="editBannerId" type="hidden" class="form-control" id="editBannerId" [ngModelOptions]="{standalone: true}" *ngIf="modalBoxName === 'Edit'">
                                 <input [(ngModel)]="bannerName" [class.is-invalid]="errorMsg.banner_name" type="text" class="form-control" id="bannerName" placeholder="Enter Banner Name" [ngModelOptions]="{standalone: true}" autocomplete="off">
-                                <!-- <input [(ngModel)]="bannerName" [class.is-invalid]="errorMsg.banner_name" type="text" class="form-control" id="bannerName" placeholder="Enter Banner Name" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editBannerId)" autocomplete="off"> -->
+                                <br>
+                               <input [(ngModel)]="banner_link" type="text" class="form-control" id="banner_link" placeholder="Enter  Banner Link" [ngModelOptions]="{standalone: true}" autocomplete="off">
+                               
+
                                 <p class="invalid-feedback" *ngIf="errorMsg.banner_name">{{errorMsg.banner_name}}</p>
                             </div>
                         </form>

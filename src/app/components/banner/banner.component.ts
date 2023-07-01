@@ -27,6 +27,7 @@ export class BannerComponent implements OnInit {
     viewNamePreview = '';
     showImage = true;
     imageUrl = '';
+    banner_link = '';
     viewImageDisc = '';
     defaultImage = 'assets/images/loader.gif';
 
@@ -55,6 +56,7 @@ export class BannerComponent implements OnInit {
         this.apiService.show('banner/' + id).subscribe((data) => {
             const value = data.data;
             this.bannerName = value.banner_name;
+            this.banner_link = value.banner_link;
             this.editBannerId = id;
         });
     }
@@ -75,6 +77,7 @@ export class BannerComponent implements OnInit {
     apiCall(name, url, value: any = '') {
         value = name === 'store' || name === 'update' ? {
             banner_name: this.bannerName,
+            banner_link:this.banner_link
         } : value;
         this.apiService[name](url, value).subscribe((data) => {
             if (data.error === false) {
