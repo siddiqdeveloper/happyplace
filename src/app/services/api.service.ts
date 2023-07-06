@@ -52,6 +52,13 @@ export class ApiService {
       return this.http.get<any>(`${this.apiURL}/` +'product', { headers });
     }
 
+    public getProductAgeList() {
+      this.getToken();
+      return this.http.get<any>(`${this.apiURL}/` +'productlist/age', { headers });
+    }
+
+
+
   public bestdealUpdateproductget() {
     this.getToken();
     return this.http.get<any>(`${this.apiURL}/` +'bestdealUpdateproductget', { headers });

@@ -20,7 +20,7 @@
                                 <div class="col-md-12">
                                   <div class="form-group">
                                     <label>Please Select Product</label>
-                                    <angular2-multiselect [(ngModel)]="productListArray" [data]="productList"  [settings]="TagNameSettings" [ngModelOptions]="{standalone: true}" #tagNameDropDown></angular2-multiselect>
+                                    <angular2-multiselect  [settings]="{enableSearchFilter:true}"  [(ngModel)]="productListArray" [data]="productList"  [settings]="TagNameSettings" [ngModelOptions]="{standalone: true}" #tagNameDropDown></angular2-multiselect>
                                   </div>
                                 </div>
                                 <div class="col-md-12">

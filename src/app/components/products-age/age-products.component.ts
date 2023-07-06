@@ -107,7 +107,7 @@ export class AgeProductsComponent implements OnInit {
       this.bestProductList = data.data;
     })
 
-    this.apiService.getProductList().subscribe((data:any)=>{
+    this.apiService.getProductAgeList().subscribe((data:any)=>{
       for (const size of    data.data) {
         this.productList.push({ id: size.id, itemName: size.product_name });
       }
