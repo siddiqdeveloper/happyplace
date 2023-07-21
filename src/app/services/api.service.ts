@@ -73,6 +73,12 @@ export class ApiService {
     return this.http.post<any>(`${this.apiURL}/` +'imageosorting', data,{ headers });
   }
 
+   public  updatesort(data){
+
+    return this.http.post<any>(`${this.apiURL}/` +'updatesort', data,{ headers });
+  
+  }
+
 
   public bestdealUpdateproduct(data) {
     this.getToken();

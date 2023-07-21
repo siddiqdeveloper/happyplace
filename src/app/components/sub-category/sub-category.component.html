@@ -48,6 +48,7 @@
                                             <thead>
                                                 <tr>
                                                     <th class="wd-15p">S.no</th>
+                                                    <th class="wd-15p">Sort Number</th>
                                                     <th class="wd-15p">Name</th>
                                                     <th class="wd-15p">Image</th>
                                                     <th class="wd-15p">Status</th>
@@ -60,6 +61,7 @@
                                             <tbody>
                                                 <tr *ngFor="let subCategory of subCategoryList| paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
                                                     <td>{{(i+1) + ((p-1) * 5)}}</td>
+                                                    <td> <input [(ngModel)]="subCategory.sort" (keyup)="updatesort(subCategory)" class="form-control" id="editSubCategoryId" [ngModelOptions]="{standalone: true}"  type="text"  name=""> </td>
                                                     <td>{{subCategory.sub_category_name | titlecase}}<br/>
                                                         ({{subCategory.category.category_name}})
                                                     </td>

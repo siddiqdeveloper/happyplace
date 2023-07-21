@@ -471,4 +471,16 @@ export class SubCategoryComponent implements OnInit {
         this.auto.close();
     }
 
+    updatesort(e){
+        console.log(e);
+          this.apiService.updatesort(e).subscribe(data => {
+        if (data.error === false) {
+            this.toastr.success(data.message);
+        } else {
+            this.toastr.error(data.message);
+        }
+      
+        });  
+    }
+
 }

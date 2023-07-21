@@ -45,6 +45,7 @@
                                                 <tr>
                                                     <th class="wd-15p">S.no</th>
                                                     <th class="wd-15p">Payment Id </th>
+                                                    <th class="wd-15p">Payment Status </th>
                                                     <th class="wd-15p">Order Id</th>
                                                     <th class="wd-15p">Name</th>
                                                     <th class="wd-15p">Mobile</th>
@@ -59,6 +60,7 @@
                                                 <tr *ngFor="let order of orderDetails| paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
                                                     <td>{{(i+1) + ((p-1) * 5)}}</td>
                                                     <td>{{order.razorpay_payment_id}}</td>
+                                                    <td>{{order.payment_status}}</td>
                                                     <td>MHP{{order.order_id}}</td>
                                                     <td>{{order.billing_name | titlecase}}</td>
                                                     <td>{{order.billing_mobile_number}}</td>
