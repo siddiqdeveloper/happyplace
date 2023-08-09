@@ -50,6 +50,9 @@ import {ProductsCreateComponent} from './components/products-create/products-cre
 import {BestProductsComponent} from './components/products-bestdeal/best-products.component';
 import {TestimonialsImgComponent} from './components/test-image/testimonials-img.component';
 import {AgeProductsComponent} from './components/products-age/age-products.component';
+import {OrdersGuestComponent} from "./components/orders-guest/orders-guest.component";
+import {UCComponent} from "./components/userac/u-c.component";
+import {CartDetailsComponent} from "./components/cart-details/cart-details.component";
 
 const routes: Routes = [
     {path: 'categories', component: CategoryComponent},
@@ -69,7 +72,10 @@ const routes: Routes = [
     {path: 'link-products', component: LinkProductsComponent},
     {path: 'linking-products/:id', component: LinkingProductsComponent},
     {path: 'orders', component: OrdersComponent},
+    {path: 'guestorders', component: OrdersGuestComponent},
+     {path: 'userac', component: UCComponent},
     {path: 'order-detail/:id', component: OrderDetailsComponent},
+  {path: 'cart-detail/:id', component: CartDetailsComponent},
     {path: 'cancel-orders', component: CancelOrdersComponent},
     {path: 'cancel-order-detail/:id', component: CancelOrderDetailsComponent},
     {path: 'banner', component: BannerComponent},
