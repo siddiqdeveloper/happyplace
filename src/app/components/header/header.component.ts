@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
     styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
- 
+
     loading = false;
     loadingBtn = false;
 
@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
     }
 
-    
+
     logout() {
         // if (confirm('Are you sure to logout?')) {
         //     this.apiService.getData('userLogout').subscribe((data) => {
@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
         //   } else {
         //     return false;
         //   }
-       
+
     }
 
 

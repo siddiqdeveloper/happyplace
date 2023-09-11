@@ -54,6 +54,7 @@ import { OrdersGuestComponent } from "./components/orders-guest/orders-guest.com
 import { UCComponent } from "./components/userac/u-c.component";
 import { CartDetailsComponent } from "./components/cart-details/cart-details.component";
 import { RegisterUsersComponent } from "./components/registeruser/register-users.component";
+import { ProfileComponent } from "./components/profile/profile.component";
 
 const routes: Routes = [
   { path: "categories", component: CategoryComponent },
@@ -96,6 +97,7 @@ const routes: Routes = [
   { path: "header-menu", component: HeaderMenuComponent },
   { path: "", component: LoginComponent },
   { path: "dashboard", component: DashboardComponent },
+  { path: "profile", component: ProfileComponent },
   { path: "location", component: LocationComponent },
   { path: "settings", component: SettingsComponent },
   { path: "blogs", component: BlogsComponent },
