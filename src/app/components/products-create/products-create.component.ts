@@ -37,6 +37,7 @@ export class ProductsCreateComponent implements OnInit {
   loadingBtn = false;
   showPopup = false;
   stockBox = false;
+  product_type: any = "np";
   modalBoxName = "";
   keyword = "name";
   categoryName: any = { id: 6, name: "Shop" };
@@ -60,7 +61,7 @@ export class ProductsCreateComponent implements OnInit {
 
   sizesList: any = [];
   tagNameList: any = [];
-  sizeArray: any = [];
+  sizeArray: any = [{ id: 8, itemName: "Digital Download" }];
   tagNameArray: any = [];
   productTagNameList: any = [];
   colorList: any = [];
@@ -317,6 +318,7 @@ export class ProductsCreateComponent implements OnInit {
       this.on_sale = value.on_sale == "1" ? true : false;
       this.best_seller = value.best_seller == "1" ? true : false;
       this.productName = value.product_name;
+      this.product_type = value.product_type;
       this.productPrice = value.product_price;
       this.productDiscPrice = value.product_discount_price;
       this.productDesc = value.product_description;
@@ -419,6 +421,7 @@ export class ProductsCreateComponent implements OnInit {
             category_id: this.categoryName.id,
             category_name: this.categoryName,
             product_name: this.productName,
+            product_type: this.product_type,
             offer_time: this.offerTime,
             on_sale: this.on_sale,
             best_seller: this.best_seller,
