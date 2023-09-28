@@ -55,7 +55,8 @@
                 <div class="col-12">
                   <div class="form-group mb-5">
                     <label>Select Product Type</label>
-                    <select [(ngModel)]="product_type" [ngModelOptions]="{standalone: true}" class="form-control">
+                    <select (change)="product_typeChange(product_type)" [(ngModel)]="product_type"
+                            [ngModelOptions]="{standalone: true}" class="form-control">
                       <option value="np">Normal Product</option>
                       <option value="dp">Digital Download</option>
                     </select>

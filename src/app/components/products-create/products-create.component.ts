@@ -61,7 +61,7 @@ export class ProductsCreateComponent implements OnInit {
 
   sizesList: any = [];
   tagNameList: any = [];
-  sizeArray: any = [{ id: 8, itemName: "Digital Download" }];
+  sizeArray: any = [];
   tagNameArray: any = [];
   productTagNameList: any = [];
   colorList: any = [];
@@ -609,5 +609,15 @@ export class ProductsCreateComponent implements OnInit {
       element.patchValue(0);
     });
     this.updateProductStocks();
+  }
+
+  product_typeChange(type) {
+    console.log(type);
+
+    if (type == "np") {
+      this.sizeArray = [];
+    } else {
+      this.sizeArray.push([{ id: 8, itemName: "Digital Download" }]);
+    }
   }
 }
