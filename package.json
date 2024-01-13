@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --openssl-legacy-provider",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -41,6 +41,7 @@
     "ngx-pagination": "^5.0.0",
     "ngx-toastr": "^11.3.3",
     "ngx-ui-loader": "^8.0.0",
+    "openssl": "^2.0.0",
     "order-id": "^2.1.1",
     "rxjs": "~6.4.0",
     "sweetalert": "^2.1.2",

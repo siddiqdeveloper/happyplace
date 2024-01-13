@@ -27,6 +27,7 @@ import Swal from "sweetalert2";
 export class ProductImageComponent implements OnInit {
   showModal: boolean = false;
   productId: any = [];
+  file_type:any = 'dp';
   imageChangedEvent: any = "";
   croppedImage: any = "";
   currentImage: any = "";
@@ -185,6 +186,7 @@ export class ProductImageComponent implements OnInit {
     const formData: FormData = new FormData();
     formData.append("product_id", this.productId);
     formData.append("product_image", imageFile);
+    formData.append("file_type", this.file_type);
 
     this.apiService.postData(formData, "imageUpdateProduct").subscribe(
       (data) => {
