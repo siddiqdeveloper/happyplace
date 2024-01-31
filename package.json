@@ -44,6 +44,7 @@
     "openssl": "^2.0.0",
     "order-id": "^2.1.1",
     "rxjs": "~6.4.0",
+    "source-map": "^0.8.0-beta.0",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^9.15.1",
     "tslib": "^1.14.1",
@@ -51,7 +52,7 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.803.27",
+    "@angular-devkit/build-angular": "^0.803.29",
     "@angular/cli": "^8.3.27",
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",

@@ -100,7 +100,7 @@
                                             <ul class="order-detail">
                                                 <li>Order ID: {{orderDetails.order_id}}</li>
                                                 <li>Billing Name: {{orderDetails.billing_name}}</li>
-                                                <li>Billing Mobile No. {{orderDetails.billing_mobile_number}}</li>
+                                              
                                                 <li>Order Date: {{orderDetails.order_submitted_at}}</li>
                                                 <!-- <li>Order Updated Date: {{orderDetails.updated_at}}</li> -->
                                                 <li>Order Total: &#8377; {{orderDetails.order_overall_totall}}</li>
@@ -108,6 +108,7 @@
                                                 <li>Order Status: {{orderDetails.order_status}}</li>
                                                 <!-- <li *ngIf="orderDetails.order_tracking_id">Order Track ID: {{orderDetails.order_tracking_id}}</li> -->
                                                 <li>E-Mail: {{orderDetails.customer_details.customer_email}}</li>
+                                                <li>Billing Mobile No. {{orderDetails.billing_mobile_number}}</li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-6 mb-4">
@@ -115,12 +116,13 @@
                                             <ul class="order-detail">
                                                 <li>{{orderDetails.ordered_address.billing_name  | titlecase}}</li>
                                                 <li *ngIf="orderDetails.ordered_address.billing_name == null ">{{orderDetails.billing_name  | titlecase }}</li>
-                                                <li>{{orderDetails.ordered_address.billing_mobile}}</li>
-                                                <li *ngIf="orderDetails.ordered_address.billing_mobile == null ">{{orderDetails.billing_mobile_number}}</li>
+                                               
                                                 <li>{{orderDetails.ordered_address?.address_name}}</li>
                                                 <li>{{orderDetails.ordered_address?.address_details}}</li>
                                                 <li>{{orderDetails.ordered_address?.address_locality_town}} - {{orderDetails.ordered_address?.address_pincode}}</li>
                                                 <li>{{orderDetails.ordered_address?.address_city_district}} - {{orderDetails.ordered_address?.address_state}}</li>
+                                                <li>{{orderDetails.ordered_address.billing_mobile}}</li>
+                                                <li *ngIf="orderDetails.ordered_address.billing_mobile == null ">{{orderDetails.billing_mobile_number}}</li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-6 mb-4">

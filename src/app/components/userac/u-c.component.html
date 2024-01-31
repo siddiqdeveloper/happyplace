@@ -60,7 +60,7 @@
                                                     <td>{{order.customer_email}}</td>
                                                     <td>{{order.guest == 0?'Register User':'Guest'}}</td>
 
-                                                    <td>{{order.created_at}}</td>
+                                                    <td>{{order.created_at |  date:'medium' }}</td>
                                                     <td><button class="btn btn-server btn-info" [routerLink]="['/cart-detail', order.customer_id]" routerLinkActive="router-link-active"><i class="zmdi zmdi-eye mobile-icon"></i> view</button></td>
 
 
