@@ -105,8 +105,17 @@
                                 <!-- <input [(ngModel)]="promoCode" (input)="promoCode=$event.target.value.toUpperCase()" [class.is-invalid]="errorMsg.promo_code" type="text" class="form-control" id="promoCode" placeholder="Enter Promo Code" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editPromoId)" autocomplete="off"> -->
                                 <p class="invalid-feedback" *ngIf="errorMsg.promo_code">{{errorMsg.promo_code}}</p>
                             </div>
+
+                            <div class="form-group">
+                                <div class="col-8">
+                                    <label>influencer</label>
+                                    <input [(ngModel)]="influencer" type="checkbox" id="influencer"  [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editPromoId)"
+                                    >
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <div class="row">
+                                    
                                     <div class="col-8">
                                         <input [(ngModel)]="discount" type="text" class="form-control" id="discount" placeholder="Enter Discount" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editPromoId)"
                                         appNumbersOnly>

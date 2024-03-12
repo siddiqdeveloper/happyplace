@@ -21,6 +21,7 @@ export class CouponCodesComponent implements OnInit {
     promoCode = '';
     discount: any = '';
     minValue = '';
+    influencer = false;
     editPromoId = '';
     modalBoxName;
     loadingBtn = false;
@@ -80,6 +81,7 @@ export class CouponCodesComponent implements OnInit {
             const value = data.data;
             this.promoCode = value.promo_code;
             this.minValue = value.min_value;
+            this.influencer = value.influencer;
             this.discount = value.discount;
             this.category_id = value.category_id;
             this.product_id = value.product_id;
@@ -124,6 +126,7 @@ export class CouponCodesComponent implements OnInit {
         value = name === 'store' || name === 'update' ? {
             promo_code: this.promoCode,
             min_value: this.minValue,
+            influencer:this.influencer,
             discount: this.discount,
             type:this.type,
             category_id:this.category_id,
