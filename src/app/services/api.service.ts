@@ -8,7 +8,7 @@ let headers = head.set("Accept", "application/json");
   providedIn: "root",
 })
 export class ApiService {
-  apiURL = "https://demo.myhappyplays.com/api";
+  apiURL = "https://myhappyplays.com/api";
   //
 
   // apiURL = 'http://192.168.0.54:8001/api'

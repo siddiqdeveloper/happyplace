@@ -41,6 +41,9 @@ export class ProductsViewComponent implements OnInit {
     edit_best_seller:any
     on_sale:any = false;
     best_seller:any = false;
+    new_product:any = false;
+    pre_product:any = false;
+
     youtube_link:any ='';
     product_description_sort:any= '';
     editProductTag:any;
@@ -315,6 +318,8 @@ export class ProductsViewComponent implements OnInit {
             this.selectedColor = value.selectColor;
             this.on_sale = value.on_sale=='1'?true:false;
             this.best_seller = value.best_seller=='1'?true:false;
+            this.new_product = value.new_product=='1'?true:false;
+            this.pre_product = value.pre_product=='1'?true:false;
             this.productName = value.product_name;
             this.productPrice = value.product_price;
             this.productDiscPrice = value.product_discount_price;
@@ -431,6 +436,8 @@ export class ProductsViewComponent implements OnInit {
             offer_time: this.offerTime,
             on_sale:this.on_sale,
             best_seller:this.best_seller,
+            new_product:this.new_product,
+            pre_product:this.pre_product,
             youtube_link:this.youtube_link,
             product_description_sort:this.product_description_sort,
             product_price:  Dis.productPrice,//this.productPrice.toString(),
