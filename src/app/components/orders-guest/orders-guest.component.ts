@@ -34,6 +34,24 @@ export class OrdersGuestComponent implements OnInit {
         });
     }
 
+    orderStatusCourier(data,id) {
+        if(data.courier == '') {
+            this.toastr.warning('Please enter Details');
+   
+            return false;
+        }
+        this.apiService.getData('orderStatusCourier', `${id}/${data.courier}`).subscribe((data) => {
+        if (data.error === false) {
+            this.listAllOrders();
+            this.toastr.success(data.message);
+            this.sliderClass = -1;
+        } else {
+            this.toastr.error(data.message);
+        }
+        });
+    }
+
+
     orderStatusUpdate(id) {
         if(this.currentStatus === 'Submitted' || this.currentStatus == '') {
             this.toastr.warning('Status cant be updated to Submitted');

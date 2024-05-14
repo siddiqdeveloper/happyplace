@@ -52,6 +52,7 @@
                                                     <th class="wd-15p">Order Amount</th>
                                                     <th class="wd-10p">Order Placed At</th>
                                                     <th class="wd-10p">View</th>
+                                                    <th class="wd-25p">Courier</th>
                                                     <th class="wd-25p">Status</th>
                                                     <th class="wd-25p">Status update</th>
                                                 </tr>
@@ -67,6 +68,12 @@
                                                     <td>&#8377; {{order.order_overall_totall}}</td>
                                                     <td>{{order.order_submitted_at}}</td>
                                                     <td><button class="btn btn-server btn-info" [routerLink]="['/order-detail', order.order_id]" routerLinkActive="router-link-active"><i class="zmdi zmdi-eye mobile-icon"></i> view</button></td>
+                                                    <td> 
+
+                                                        <input type="text" (change)="orderStatusCourier(order,order.order_id)"  name="courier" [(ngModel)]="order.courier" />
+
+                                                    </td>
+                                                  
                                                     <td>{{order.order_status}}</td>
                                                     <td>
                                                         <button *ngIf="sliderClass != i" class="btn btn-server btn-warning" (click)="orderUpdate(i)">Change Status</button>

@@ -58,8 +58,8 @@
                                                     <td>{{(product.product_details[0].product_name.length>20)? (product.product_details[0].product_name | slice:0:20)+'..':(product.product_details[0].product_name)}}</td>
                                                     <td  *ngIf="product.color?.color_name != 'Default'" class="ordered-prod-color" [ngStyle]="{'backgroundColor':product.color.color_code}"></td>
                                                     <td  *ngIf="product.color?.color_name == 'Default'" class="ordered-prod-nil" >NIL</td>
-                                                    <td>&#8377; {{product.product_price}}</td>
-                                                    <td>{{product.size.size_name}}</td>
+                                                    <td>&#8377; {{product.product_details[0].mrp}}</td>
+                                                    <td>{{product.size.size_name}}</td> 
                                                     <td>{{product.product_quantity}}</td>
                                                     <td>&#8377; {{product.product_total}}</td>
 
