@@ -127,6 +127,13 @@ export class ApiService {
     return this.http.get<any>(`${this.apiURL}/` + params, { headers });
   }
 
+  public deleteReviews(params) {
+    return this.http.get<any>(`${this.apiURL}/deleteReviews/` + params, { headers });
+  }
+  public approvalReviews(params) {
+    return this.http.get<any>(`${this.apiURL}/approvalReviews/` + params, { headers });
+  }
+
   public update(params, data) {
     return this.http.post<any>(
       `${this.apiURL}/` + params + "?_method=PUT",

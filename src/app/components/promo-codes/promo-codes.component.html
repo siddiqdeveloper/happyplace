@@ -139,6 +139,7 @@
                             <div class="form-group">
                                 <input [(ngModel)]="editPromoId" type="hidden" class="form-control" id="editPromoId" [ngModelOptions]="{standalone: true}" *ngIf="modalBoxName === 'Edit'">
                                 <input [(ngModel)]="promoCode" (input)="promoCode=$event.target.value.toUpperCase()" [class.is-invalid]="errorMsg.promo_code" type="text" class="form-control" id="promoCode" placeholder="Enter Promo Code" [ngModelOptions]="{standalone: true}" autocomplete="off">
+                                <input [(ngModel)]="promoDes" (input)="promoDes=$event.target.value.toUpperCase()" [class.is-invalid]="errorMsg.promo_code" type="text" class="form-control" id="promoCode" placeholder="Enter Promo Description" [ngModelOptions]="{standalone: true}" autocomplete="off">
                                 <!-- <input [(ngModel)]="promoCode" (input)="promoCode=$event.target.value.toUpperCase()" [class.is-invalid]="errorMsg.promo_code" type="text" class="form-control" id="promoCode" placeholder="Enter Promo Code" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editPromoId)" autocomplete="off"> -->
                                 <p class="invalid-feedback" *ngIf="errorMsg.promo_code">{{errorMsg.promo_code}}</p>
                             </div>

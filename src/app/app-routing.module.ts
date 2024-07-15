@@ -55,8 +55,12 @@ import { UCComponent } from "./components/userac/u-c.component";
 import { CartDetailsComponent } from "./components/cart-details/cart-details.component";
 import { RegisterUsersComponent } from "./components/registeruser/register-users.component";
 import { ProfileComponent } from "./components/profile/profile.component";
+import { ProductsReviewComponent } from "./components/products-review/products-review.component";
 
 const routes: Routes = [
+
+  
+  { path: "reviews", component: ProductsReviewComponent },
   { path: "categories", component: CategoryComponent },
   { path: "category-image/:id", component: CategoryImageComponent },
   {

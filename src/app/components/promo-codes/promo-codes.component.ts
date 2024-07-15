@@ -19,6 +19,7 @@ export class PromoCodesComponent implements OnInit {
     loading = false;
     promoList: any = [];
     promoCode = '';
+    promoDes = '';
     discount: any = '';
     minValue = '';
     editPromoId = '';
@@ -79,6 +80,7 @@ export class PromoCodesComponent implements OnInit {
         this.apiService.show('promo/' + id).subscribe((data) => {
             const value = data.data;
             this.promoCode = value.promo_code;
+            this.promoDes = value.promo_des;
             this.minValue = value.min_value;
             this.discount = value.discount;
             this.category_id = value.category_id;
@@ -124,6 +126,7 @@ export class PromoCodesComponent implements OnInit {
     apiCall(name, url, value: any = '') {
         value = name === 'store' || name === 'update' ? {
             promo_code: this.promoCode,
+            promo_des: this.promoDes,
             min_value: this.minValue,
             discount: this.discount,
             type:this.type,

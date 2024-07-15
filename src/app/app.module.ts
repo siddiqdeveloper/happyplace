@@ -97,6 +97,7 @@ import { UCComponent } from "./components/userac/u-c.component";
 import { CartDetailsComponent } from "./components/cart-details/cart-details.component";
 import { RegisterUsersComponent } from "./components/registeruser/register-users.component";
 import { ProfileComponent } from "./components/profile/profile.component";
+import { ProductsReviewComponent } from "./components/products-review/products-review.component";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -186,6 +187,7 @@ export class AuthInterceptor implements HttpInterceptor {
     CartDetailsComponent,
     RegisterUsersComponent,
     ProfileComponent,
+    ProductsReviewComponent
   ],
   imports: [
     BrowserModule,
