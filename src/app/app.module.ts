@@ -98,6 +98,7 @@ import { CartDetailsComponent } from "./components/cart-details/cart-details.com
 import { RegisterUsersComponent } from "./components/registeruser/register-users.component";
 import { ProfileComponent } from "./components/profile/profile.component";
 import { ProductsReviewComponent } from "./components/products-review/products-review.component";
+import { PopupSettingComponent } from "./components/popup-setting/popup-setting.component";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -187,7 +188,8 @@ export class AuthInterceptor implements HttpInterceptor {
     CartDetailsComponent,
     RegisterUsersComponent,
     ProfileComponent,
-    ProductsReviewComponent
+    ProductsReviewComponent,
+    PopupSettingComponent
   ],
   imports: [
     BrowserModule,

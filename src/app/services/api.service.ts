@@ -76,6 +76,19 @@ export class ApiService {
     });
   }
 
+  public popupupdate(data) {
+    return this.http.post<any>(`${this.apiURL}/` + "popupupdate", data, {
+      headers,
+    });
+  }
+
+  public popupuget(data) {
+    return this.http.get<any>(`${this.apiURL}/` + "popupuget", {
+      headers,
+    });
+  }
+
+
   public imageosorting(data) {
     return this.http.post<any>(`${this.apiURL}/` + "imageosorting", data, {
       headers,

@@ -56,10 +56,11 @@ import { CartDetailsComponent } from "./components/cart-details/cart-details.com
 import { RegisterUsersComponent } from "./components/registeruser/register-users.component";
 import { ProfileComponent } from "./components/profile/profile.component";
 import { ProductsReviewComponent } from "./components/products-review/products-review.component";
+import { PopupSettingComponent } from "./components/popup-setting/popup-setting.component";
 
 const routes: Routes = [
 
-  
+  { path: "popupsetting", component: PopupSettingComponent },
   { path: "reviews", component: ProductsReviewComponent },
   { path: "categories", component: CategoryComponent },
   { path: "category-image/:id", component: CategoryImageComponent },

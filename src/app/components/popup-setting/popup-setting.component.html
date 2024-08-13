@@ -1,0 +1,42 @@
+<app-header></app-header>
+<app-sidemenu></app-sidemenu>
+<div class="app sidebar-mini">
+    <div class="page">
+        <div class="page-main">
+            <div class="app-content">
+                <div class="side-app">
+                    <div class="page-header">
+                        <h4 class="page-title">Setting</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                          <form #passwordChangeForm="ngForm" (ngSubmit)="changePassword()">
+
+                          <div class="card" style="padding:23px">
+                              <div class="">
+                                <div class="form-group mb-5">
+
+                                    <label for="newPassword">Popup Content</label>
+                                   
+                                    <angular-editor [(ngModel)]="newPassword" [ngModelOptions]="{standalone: true}"
+                                    [placeholder]="'Enter text here...'"></angular-editor>
+
+
+                                </div>
+                              </div>
+
+                              
+                              <div class="col-6">
+                                <button type="submit" [disabled]="passwordChangeForm.invalid">Update</button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <app-footer></app-footer>
+        </div>
+    </div>
