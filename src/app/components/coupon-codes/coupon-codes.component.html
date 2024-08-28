@@ -128,8 +128,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                
+                                <input [(ngModel)]="promoDes" (input)="promoDes=$event.target.value.toUpperCase()" [class.is-invalid]="errorMsg.promo_code" type="text" class="form-control" id="promoCode" placeholder="Enter Promo Description" [ngModelOptions]="{standalone: true}" autocomplete="off">
                                 <input [(ngModel)]="minValue" type="text" class="form-control" id="minValue" placeholder="Enter Minimum Value" [ngModelOptions]="{standalone: true}" (keypress)="keyPress($event, modalBoxName, editPromoId)"
                                     appNumbersOnly>
+
+
                                 <p class="invalid-error" *ngIf="errorMsg.min_value">{{errorMsg.min_value}}
                                 </p>
                             </div>

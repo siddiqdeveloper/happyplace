@@ -76,6 +76,15 @@ export class ApiService {
     });
   }
 
+
+  public updatetoptext(data) {
+    return this.http.post<any>(`${this.apiURL}/` + "bannertext", data, {
+      headers,
+    });
+  }
+
+
+
   public popupupdate(data) {
     return this.http.post<any>(`${this.apiURL}/` + "popupupdate", data, {
       headers,

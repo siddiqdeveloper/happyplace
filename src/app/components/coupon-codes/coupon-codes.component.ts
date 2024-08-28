@@ -20,6 +20,7 @@ export class CouponCodesComponent implements OnInit {
     promoList: any = [];
     promoCode = '';
     discount: any = '';
+    promoDes:any= '';
     minValue = '';
     influencer = false;
     editPromoId = '';
@@ -82,6 +83,7 @@ export class CouponCodesComponent implements OnInit {
             this.promoCode = value.promo_code;
             this.minValue = value.min_value;
             this.influencer = value.influencer;
+            this.promoDes = value.promo_des;
             this.discount = value.discount;
             this.category_id = value.category_id;
             this.product_id = value.product_id;
@@ -129,6 +131,7 @@ export class CouponCodesComponent implements OnInit {
             influencer:this.influencer,
             discount: this.discount,
             type:this.type,
+            promo_des:this.promoDes,
             category_id:this.category_id,
             product_id:this.product_id,
             date:this.date,
