@@ -73,9 +73,9 @@ export class ProductsCreateComponent implements OnInit {
   tagNameArrayId: any = [];
   selectedSize: any = [];
   selectedTagName: any = [];
-  sizeSettings = {};
+  sizeSettings:any = {};
   TagNameSettings = {};
-  colorSettings = {};
+  colorSettings:any = {};
   tagSettings = {};
 
   categories: any = [];
@@ -146,10 +146,11 @@ export class ProductsCreateComponent implements OnInit {
 
     this.sizeSettings = {
       singleSelection: false,
-      text: "Select Weight",
+      text: "Select Attribute",
       selectAllText: "Select All",
       unSelectAllText: "UnSelect All",
       enableSearchFilter: true,
+      disabled:false,
       classes: "myclass custom-class",
     };
     this.colorSettings = {
@@ -302,10 +303,17 @@ export class ProductsCreateComponent implements OnInit {
     this.apiService.show("product/" + id).subscribe((data) => {
       //   alert("alert two")
       const value = data.data;
+      this.product_type = data.product_type;
+
+      if(this.product_type =='dp'){
+        this.SubCategoryId = 39;
+      }else{
+        this.SubCategoryId = value.sub_category.sub_category_name;
+      }
       this.editProductId = id;
       this.editSubCategoryId = id;
       this.productTags = value.product_tags;
-      this.SubCategoryId = value.sub_category.sub_category_name;
+     
       this.sizeArray = value.product_sizes;
       this.tagNameArray = value.product_tags;
       this.colorArray = value.color;
@@ -622,8 +630,12 @@ export class ProductsCreateComponent implements OnInit {
 
     if (type == "np") {
       this.sizeArray = [];
+      this.colorSettings.disabled = false;
     } else {
-      this.sizeArray.push([{ id: 8, itemName: "Digital Download" }]);
-    }
+      this.colorArray = [];
+      this.colorSettings.disabled = true;
+      this.sizeArray.push({id: 40, itemName: "Digital Downloads	"});
+      this.colorArray.push({id: 15, itemName: "Default"})
+  }
   }
 }

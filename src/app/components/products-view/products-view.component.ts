@@ -17,7 +17,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ProductsViewComponent implements OnInit {
   // qtd:any[] = {};
-
+    product_type:any = [];
     SubCategoryId: any = [];
     editofferTime: any = []
     productL;ist: any = [];
@@ -301,6 +301,14 @@ export class ProductsViewComponent implements OnInit {
         this.apiService.show('product/' + id).subscribe((data) => {
         //   alert("alert two")
             const value = data.data;
+
+            this.product_type = data.product_type;
+
+           
+             
+              this.SubCategoryId = value.sub_category.sub_category_name;
+            
+
             this.editProductId = id;
             this.editSubCategoryId  = id;
             this.productTags = value.product_tags;

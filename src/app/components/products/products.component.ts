@@ -98,6 +98,18 @@ export class ProductsComponent implements OnInit {
   productListOg:any = [];
   constructor(public router:Router,private apiService: ApiService, private toastr: ToastrService, private imageService: ImageService, private formBuilder: FormBuilder) { }
 
+
+  getValidImage(product: any): string {
+  
+      let check =  product.images.find((image: any) => {
+        return image.type !== "dp";
+      });
+
+      return check?check.product_image:'';
+    
+  
+  }
+  
   ngOnInit() {
 
     this.index();

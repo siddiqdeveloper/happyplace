@@ -60,7 +60,7 @@ export class ProductImageComponent implements OnInit {
     this.listAllProducts();
     this.imageUrl = this.imageService.getMinImageurl();
   }
-
+   typeItems:any = [];
   listAllProducts() {
     this.name = this.route.snapshot.paramMap.get("name");
     this.loading = true;
@@ -70,6 +70,7 @@ export class ProductImageComponent implements OnInit {
         (data) => {
           this.productId = data.data.id;
           this.allImageList = data.data.images;
+          this.typeItems = data.data.product_sizes;
           this.productDetails = data.data;
           this.file_type = data.data.product_type;
         },

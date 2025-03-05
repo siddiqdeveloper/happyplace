@@ -7,10 +7,10 @@
         <div class="side-app">
           <div class="page-header">
             <h4 class="page-title">Products</h4>
-            <h5> Product Name : {{name}}</h5>
-           <div style="display:none;">
+            <h5> Product Name : {{name}} {{file_type}}</h5>
+           <div  *ngIf="productDetails.product_type == 'dp'">
             <label>Select Upload Type</label>
-            <select class="form-control" [(ngModel)]="file_type">
+            <select class="form-control" name="file_type" [(ngModel)]="file_type">
               <option value="dp">Digital PDF</option>
               <option value="np">Image</option>
             </select>
@@ -138,7 +138,7 @@
               <div [class.h-500]="loading" class="card p-4">
                 <div class="card-header-1">
                   <div class="row justify-content-center">
-                    <div *ngIf="productDetails.product_type == 'dp'" class="col-md-12">
+                    <div *ngIf="file_type == 'dp'" class="col-md-12">
                       <div class="mt-3">
                         <button (click)="convertFile(hoverClass)"
                                 [ngClass]="{'btn-loading disabled': loadingBtn}"
@@ -216,6 +216,7 @@
                 <table class="table table-striped table-bordered text-nowrap w-100 text-center align-middle">
                   <thead>
                   <tr>
+                    <th>Select Item</th>
                     <th class="wd-15p">Sortting No.</th>
                     <th class="wd-15p">S.no</th>
                     <th class="wd-15p">Image</th>
@@ -227,8 +228,20 @@
 
                   <tr *ngFor="let product of allImageList; let i = index;">
                     <td>
+                      <select *ngIf="product.type != 'dp'"   (change)="drop()" [(ngModel)]="product.size_id" [ngModelOptions]="{standalone: true}"
+                      name="index" type="text">
+                        <option value=""> Select</option>
+                        <option *ngFor="let item of typeItems" value="{{item.id}}">
+                          {{item.itemName}}
+                        </option>
 
-                      <input (keyup)="drop()" [(ngModel)]="product.sortting" [ngModelOptions]="{standalone: true}"
+                        
+                      </select>
+                      
+                      </td>
+                    <td>
+
+                      <input *ngIf="product.type != 'dp'"  (keyup)="drop()" [(ngModel)]="product.sortting" [ngModelOptions]="{standalone: true}"
                              name="text" type="text">
 
 
@@ -237,7 +250,9 @@
                       {{product.product_image_id}}
                     </td>
                     <td>
-                      <img class="image" src="{{product.product_image}}">
+                     
+                      <span *ngIf="product.type == 'dp'">Digital Download</span>
+                      <img *ngIf="product.type != 'dp'" class="image" src="{{product.product_image}}">
                     </td>
 
                     <td>

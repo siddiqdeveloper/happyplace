@@ -62,7 +62,7 @@
                     </select>
                   </div>
                 </div>
-                <div *ngIf="product_type == 'np'" class="col-6">
+                <div  class="col-6">
                   <div class="form-group mb-5">
                     <input [(ngModel)]="editSubCategoryId" [ngModelOptions]="{standalone: true}" class="form-control"
                            id="editSubCategoryId"
@@ -86,7 +86,7 @@
                 </div>
 
 
-                <div *ngIf="product_type == 'np'" class="col-6">
+                <div  class="col-6">
                   <label>On Sale</label>
                   <input [(ngModel)]="on_sale" [ngModelOptions]="{standalone: true}" name="checkbox" type="checkbox">
 
@@ -125,7 +125,7 @@
                   </p>
                 </div>
               </div>
-              <div *ngIf="product_type == 'np'" class="row">
+              <div class="row">
                 <div class="col-6" style="display: none">
                   <div class="form-group  ">
                     <angular2-multiselect #tagNameDropDown (keyup.enter)="openSize($event)"
@@ -150,9 +150,9 @@
                 </div>
               </div>
               <div class="row">
-                <div *ngIf="product_type == 'np'" class="col-6">
+                <div  class="col-6">
                   <div class="form-group">
-                    <angular2-multiselect #colorDropDown (keyup.enter)="openColor($event)"
+                    <angular2-multiselect  #colorDropDown (keyup.enter)="openColor($event)"
                                           (onDeSelectAll)="onDeSelectAllcolor($event)"
                                           [(ngModel)]="colorArray" [data]="colorList"
                                           [ngModelOptions]="{standalone: true}"

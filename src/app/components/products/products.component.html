@@ -74,7 +74,8 @@
                                                         update Image
                                                     </td>
                                                     <td *ngIf="product.images.length !== 0">
-                                                        <img [defaultImage]="defaultImage" lazyLoad="{{product.images[0].product_image}}" class="image" (click)="viewImage(product.id)">
+                                                        <img [defaultImage]="defaultImage" lazyLoad="{{ getValidImage(product) }}" class="image" (click)="viewImage(product.id)">
+
                                                     </td>
                                                     <td>
                                                         <span class=" text-success status_icon m-1 " *ngIf="product.active_status == 1"><i
